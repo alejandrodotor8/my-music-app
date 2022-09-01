@@ -1,21 +1,11 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import './App.scss';
+import '../styles/App.scss';
 
 function App() {
-	const CLIENT_ID = '8c87272c262b4a81b19e595464e39c6c';
-	const REDIRECT_URI = 'http://localhost:5173';
-	const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
-	const RESPONSE_TYPE = 'token';
+	const env = import.meta.env;
 
-	const URL_AUTH =
-		AUTH_ENDPOINT +
-		'?client_id=' +
-		CLIENT_ID +
-		'&redirect_uri=' +
-		REDIRECT_URI +
-		'&response_type=' +
-		RESPONSE_TYPE;
+	const URL_AUTH = `${env.VITE_AUTH_ENDPOINT}?client_id=${env.VITE_CLIENT_ID}&redirect_uri=${env.VITE_REDIRECT_URI}&response_type=${env.VITE_RESPONSE_TYPE}`;
 
 	const [count, setCount] = useState(0);
 	const [token, setToken] = useState('');
