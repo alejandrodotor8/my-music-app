@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../Hooks/useAuth';
+import Button from '../components/atoms/button-primary';
 import '../styles/App.scss';
 
 function SignIn() {
@@ -31,12 +32,15 @@ function SignIn() {
 	}, []);
 
 	return (
-		<div className="App">
-			<div>
-				{!isAuthenticated ? (
-					<a href={URL_AUTH}>Sign in with spotify</a>
-				) : null}
-			</div>
+		<div className="signin">
+			{!isAuthenticated ? (
+				<div>
+					<Button type="a" to={URL_AUTH}>
+						Sign in
+					</Button>
+					<span>with Spotify</span>
+				</div>
+			) : null}
 		</div>
 	);
 }

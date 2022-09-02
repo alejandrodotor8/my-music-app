@@ -1,24 +1,17 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
-import { ReactNode } from 'react';
-import { useAuth, AuthProvider } from './Hooks/useAuth';
-import { Props } from './shared/types';
-import './styles/App.scss';
+import { Route, Routes } from 'react-router-dom';
+import { AuthProvider } from './Hooks/useAuth';
+import { ProtectedRoute } from './shared/ProtectedRoute';
+import Header from './components/organisms/Header';
+import Footer from './components/organisms/Footer';
 import Home from './pages/Home';
 import SigIn from './pages/SignIn';
-
-function ProtectedRoute({ children }: Props): ReactNode {
-	const { isAuthenticated } = useAuth();
-	if (!isAuthenticated) {
-		return <Navigate to="/signin"></Navigate>;
-	}
-	return children;
-}
+import './styles/App.scss';
 
 function App() {
 	return (
 		<div className="App">
-			<h1>My Music App</h1>
 			<AuthProvider>
+				<Header />
 				<Routes>
 					<Route
 						path="/"
@@ -31,6 +24,7 @@ function App() {
 					<Route path="/signin" element={<SigIn />} />
 					<Route path="*" element={<h1>404</h1>} />
 				</Routes>
+				<Footer />
 			</AuthProvider>
 		</div>
 	);
