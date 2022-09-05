@@ -1,13 +1,14 @@
-import '../../styles/atoms/button-primary.scss';
-function Button({ children, type, to }) {
+import { IButton } from '../../shared/types';
+import './button-primary.scss';
+function Button({ text, type, to }: IButton): JSX.Element {
 	if (type == 'a') {
 		return (
 			<a className="button-primary" href={to}>
-				{children}
+				{text}
 			</a>
 		);
 	} else {
-		<button className="button-primary">{children}</button>;
+		return <button className="button-primary">{text}</button>;
 	}
 }
 export default Button;

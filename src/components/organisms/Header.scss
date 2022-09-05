@@ -1,13 +1,17 @@
-@import "../variables.scss";
+@import "../../styles/variables.scss";
 
 .header {
 	background-color: $purple-light;
 	color: $white;
 	width: 100%;
 	height: 45px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	&__link {
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: $white;
+	}
 	h1 {
 		font-size: 2.1rem;
 		padding-left: 10px;

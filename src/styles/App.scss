@@ -1,3 +1,5 @@
+@import "../styles/variables.scss";
+
 .App {
 	display: flex;
 	flex-wrap: nowrap;
@@ -7,19 +9,37 @@
 	width: 100vw;
 	height: 100vh;
 }
+/* PAGE SIGIN */
 .signin {
-	width: 100%;
-	height: 80px;
+	width: 80%;
 	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
 	justify-content: center;
 	align-items: center;
+	margin: 10px 10%;
 	div {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		span {
-			padding: 8px;
+		margin: 20px 0;
+	}
+	&__btn span {
+		padding: 8px;
+	}
+	&__welcome {
+		h2 {
+			font-size: 4rem;
+			text-align: end;
+			font-weight: 800;
+		}
+		&--purple {
+			color: $purple-dark;
+		}
+		img {
+			width: 90%;
+			margin-right: 10%;
 		}
 	}
 }

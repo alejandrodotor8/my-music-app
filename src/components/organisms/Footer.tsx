@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../Hooks/useAuth';
-import '../../styles/organisms/Footer.scss';
+import './Footer.scss';
 
 function Footer() {
 	const { logout, isAuthenticated } = useAuth();
@@ -12,7 +12,10 @@ function Footer() {
 	};
 	return (
 		<footer className="footer">
-			<p>this is the footer</p>
+			<p>
+				Made with &#x1F49C;
+				<a href="https://github.com/alejandrodotor8"> @alejandrodotor8</a>
+			</p>
 			{isAuthenticated ? (
 				<button onClick={handleClick}>Log out</button>
 			) : null}

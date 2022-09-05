@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../Hooks/useAuth';
 import Button from '../components/atoms/button-primary';
+import img from '../assets/img/signinwelcome.png';
 import '../styles/App.scss';
 
 function SignIn() {
@@ -15,7 +16,7 @@ function SignIn() {
 		const hash = location.hash;
 		let token_LS = localStorage.getItem('token_spotify');
 
-		//if token in LS does not exist and there is a hash
+		//if token does not exist in LS and there is a hash
 		if (!token_LS && hash) {
 			const queryParams = new URLSearchParams(hash.substring(1));
 			const access_token = queryParams.get('access_token');
@@ -33,14 +34,20 @@ function SignIn() {
 
 	return (
 		<div className="signin">
-			{!isAuthenticated ? (
-				<div>
-					<Button type="a" to={URL_AUTH}>
-						Sign in
-					</Button>
+			<div className="signin__welcome">
+				<h2>
+					Enjoy top 100
+					<span className="signin__welcome--purple"> Spotify </span>global
+					songs
+				</h2>
+				<img src={img} alt="welcome image" />
+			</div>
+			{!isAuthenticated && (
+				<div className="signin__btn">
+					<Button type="a" to={URL_AUTH} text="Sign in" />
 					<span>with Spotify</span>
 				</div>
-			) : null}
+			)}
 		</div>
 	);
 }
