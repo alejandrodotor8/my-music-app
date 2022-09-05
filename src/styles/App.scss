@@ -7,7 +7,6 @@
 	align-items: center;
 	justify-content: space-between;
 	width: 100vw;
-	height: 100vh;
 }
 /* PAGE SIGIN */
 .signin {
@@ -42,4 +41,12 @@
 			margin-right: 10%;
 		}
 	}
+}
+
+/* PAGE HOME */
+
+.home {
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }

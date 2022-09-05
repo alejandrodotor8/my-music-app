@@ -36,7 +36,7 @@ function SignIn() {
 		<div className="signin">
 			<div className="signin__welcome">
 				<h2>
-					Enjoy top 100
+					Enjoy top 50
 					<span className="signin__welcome--purple"> Spotify </span>global
 					songs
 				</h2>

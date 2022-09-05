@@ -10,3 +10,14 @@ export interface IButton {
 	to: string;
 	type: Btn;
 }
+
+export interface User {
+	id: string;
+	name: string;
+	image: string;
+}
+export interface Track {
+	id: string;
+	name: string;
+	artists: string[];
+}
