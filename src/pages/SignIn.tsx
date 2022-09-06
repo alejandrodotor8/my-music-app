@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../Hooks/useAuth';
 import Button from '../components/atoms/button-primary';
 import img from '../assets/img/signinwelcome.png';
-import '../styles/App.scss';
 
 function SignIn() {
 	const env = import.meta.env;
