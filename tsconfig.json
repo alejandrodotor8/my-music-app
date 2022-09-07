@@ -21,7 +21,7 @@
 		"jsx": "react-jsx",
 		"types": [
 			"vite/client"
-		]
+		],
 	},
 	"include": [
 		"src"
@@ -30,5 +30,5 @@
 		{
 			"path": "./tsconfig.node.json"
 		}
-	]
+	],
 }

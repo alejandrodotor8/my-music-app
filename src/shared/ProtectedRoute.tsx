@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../Hooks/useAuth';
-import { Props } from '../shared/types';
+import type { Props } from '../shared/types';
 
 function ProtectedRoute({ children }: Props): JSX.Element {
 	const { isAuthenticated } = useAuth();
@@ -10,4 +10,4 @@ function ProtectedRoute({ children }: Props): JSX.Element {
 	return <>{children}</>;
 }
 
-export { ProtectedRoute };
+export default ProtectedRoute;

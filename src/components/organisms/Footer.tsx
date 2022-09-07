@@ -1,15 +1,21 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../Hooks/useAuth';
+import { useAppDispatch } from '../../Hooks/reduxHooks';
+import { resetUser } from '../../store/slices/userSlice';
 import './Footer.scss';
 
 function Footer() {
 	const { logout, isAuthenticated } = useAuth();
 	const navigate = useNavigate();
 
+	const dispatch = useAppDispatch();
+
 	const handleClick = (): void => {
 		logout();
+		dispatch(resetUser());
 		navigate('/signin');
 	};
+
 	return (
 		<footer className="footer">
 			<p>

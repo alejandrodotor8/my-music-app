@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from 'react';
-import { Props } from '../shared/types';
+import type { Props } from '../shared/types';
 
 interface IAuth {
 	isAuthenticated: boolean;

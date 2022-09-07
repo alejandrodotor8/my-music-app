@@ -4,20 +4,31 @@
 	background-color: $purple-light;
 	color: $white;
 	width: 100%;
-	height: 45px;
+	height: 50px;
+	padding: 0 10%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: nowrap;
 	&__link {
 		height: 45px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		color: $white;
+		&-logo {
+			width: 25px;
+		}
 	}
 	h1 {
 		font-size: 2.1rem;
 		padding-left: 10px;
 		font-weight: 400;
 	}
-	img {
-		width: 25px;
+	&__profilePicture {
+		width: 38px;
+		height: 38px;
+		border-radius: 50%;
+		border: 2px solid $purple-dark;
 	}
 }
