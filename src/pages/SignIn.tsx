@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../Hooks/useAuth';
-import PrimaryButton from '../components/atoms/button-primary';
+import PrimaryButton from '../components/atoms/Button-primary';
 import img from '../assets/img/signinwelcome.png';
 
 function SignIn() {
