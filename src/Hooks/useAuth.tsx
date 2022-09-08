@@ -7,7 +7,7 @@ interface IAuth {
 	logout: () => void;
 }
 
-const AuthContext = createContext<IAuth>(null);
+const AuthContext = createContext<IAuth>(null as any);
 
 export const AuthProvider = ({ children }: IPropsChildren) => {
 	const auth = useProviderAuth();
