@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../Hooks/useAuth';
-import Button from '../components/atoms/button-primary';
+import PrimaryButton from '../components/atoms/button-primary';
 import img from '../assets/img/signinwelcome.png';
 
 function SignIn() {
@@ -43,7 +43,7 @@ function SignIn() {
 			</div>
 			{!isAuthenticated && (
 				<div className="signin__btn">
-					<Button type="a" to={URL_AUTH} text="Sign in" />
+					<PrimaryButton type="a" to={URL_AUTH} text="Sign in" />
 					<span>with Spotify</span>
 				</div>
 			)}
