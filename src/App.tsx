@@ -6,6 +6,7 @@ import Header from './components/organisms/Header';
 import Footer from './components/organisms/Footer';
 import Home from './pages/Home';
 import SigIn from './pages/SignIn';
+import Favorites from './pages/Profile';
 import './styles/index.scss';
 
 function App() {
@@ -23,6 +24,14 @@ function App() {
 						}
 					/>
 					<Route path="/signin" element={<SigIn />} />
+					<Route
+						path="/Profile/:id"
+						element={
+							<ProtectedRoute>
+								<Favorites />
+							</ProtectedRoute>
+						}
+					/>
 					<Route path="*" element={<h1>404</h1>} />
 				</Routes>
 				<Footer />

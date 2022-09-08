@@ -1,8 +1,8 @@
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../Hooks/useAuth';
-import type { Props } from '../shared/types';
+import type { IPropsChildren } from '../shared/types';
 
-function ProtectedRoute({ children }: Props): JSX.Element {
+function ProtectedRoute({ children }: IPropsChildren): JSX.Element {
 	const { isAuthenticated } = useAuth();
 	if (!isAuthenticated) {
 		return <Navigate to="/signin"></Navigate>;

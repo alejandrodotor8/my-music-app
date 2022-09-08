@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from 'react';
-import type { Props } from '../shared/types';
+import type { IPropsChildren } from '../shared/types';
 
 interface IAuth {
 	isAuthenticated: boolean;
@@ -9,7 +9,7 @@ interface IAuth {
 
 const AuthContext = createContext<IAuth>(null);
 
-export const AuthProvider = ({ children }: Props) => {
+export const AuthProvider = ({ children }: IPropsChildren) => {
 	const auth = useProviderAuth();
 	return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
 };

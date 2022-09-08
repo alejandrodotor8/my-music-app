@@ -6,13 +6,16 @@
 	border: none;
 	display: grid;
 	place-content: center;
+	background-color: transparent;
+	&--isFav {
+		fill: $purple-light !important;
+	}
 	svg {
 		width: 20px;
 		height: 18px;
-		fill: none;
-	}
-	path {
-		fill: $purple-light;
-		stroke: $purple-light;
+		path {
+			fill: none;
+			stroke: $purple-light;
+		}
 	}
 }

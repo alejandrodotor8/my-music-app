@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-export interface Props {
+export interface IPropsChildren {
 	children?: ReactNode;
 }
 
@@ -11,14 +11,15 @@ export interface IButton {
 	type: Btn;
 }
 
-export interface User {
+export interface IUser {
 	id: string;
 	name: string;
 	image: string;
 }
-export interface Track {
+export interface ITrack {
 	id: string;
 	name: string;
 	artists: string[];
 	image: string;
+	audio: string;
 }

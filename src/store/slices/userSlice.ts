@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import type { User } from '../../shared/types';
+import type { IUser } from '../../shared/types';
 
 interface UserState {
-	value: User;
+	value: IUser;
 }
 const initialState: UserState = {
 	value: { id: '', name: '', image: '' },
