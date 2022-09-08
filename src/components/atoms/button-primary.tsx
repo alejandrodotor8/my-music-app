@@ -1,5 +1,5 @@
 import type { IButton } from '../../shared/types';
-import './Button-primary.scss';
+import './button-primary.scss';
 
 function Button({ text, type, to }: IButton): JSX.Element {
 	if (type == 'a') {
