@@ -22,6 +22,10 @@ class SpotifyApi {
 		const res = await this.api('/me');
 		return res;
 	}
+	async getCurrentUserTracks() {
+		const res = await this.api('/me/tracks');
+		return res;
+	}
 
 	async getPlaylistTracks(playlist_id: string) {
 		const res = await this.api(`playlists/${playlist_id}/tracks`);

@@ -1,6 +1,6 @@
 /* Función para media queries */
 @mixin from($size) {
-	@media (max-width: $size) {
+	@media (min-width: $size) {
 		@content;
 	}
 }
