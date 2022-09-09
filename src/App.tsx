@@ -25,7 +25,7 @@ function App() {
 					/>
 					<Route path="/signin" element={<SigIn />} />
 					<Route
-						path="/Profile/:id"
+						path="/profile/:id"
 						element={
 							<ProtectedRoute>
 								<Favorites />

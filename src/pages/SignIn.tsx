@@ -6,6 +6,7 @@ import img from '../assets/img/signinwelcome.png';
 
 function SignIn() {
 	const env = import.meta.env;
+	const scope = 'user-library-read';
 	const URL_AUTH = `${env.VITE_AUTH_ENDPOINT}?client_id=${env.VITE_CLIENT_ID}&redirect_uri=${env.VITE_REDIRECT_URI}&response_type=${env.VITE_RESPONSE_TYPE}`;
 
 	const { login, isAuthenticated } = useAuth();

@@ -20,6 +20,7 @@ function Home(): JSX.Element {
 			try {
 				setLoading(true);
 				const api = new SpotifyApi(token);
+
 				api.getCurrentUser().then((res) => {
 					dispatch(
 						setUser({
@@ -29,8 +30,8 @@ function Home(): JSX.Element {
 						})
 					);
 				});
+
 				api.getPlaylistTracks('37i9dQZEVXbMDoHDwVN2tF').then((res) => {
-					console.log(res.data.items);
 					const tracks: ITrack[] = [];
 					res.data.items.forEach((item: any) => {
 						tracks.push({
@@ -60,13 +61,15 @@ function Home(): JSX.Element {
 			<div className="home">
 				<h2>Top 50 Global songs!</h2>
 				<p>Add the best tracks to you favorites playlist</p>
-				{topGlobalplaylist && (
-					<ul className="tracks">
-						{topGlobalplaylist.map((track, index) => (
-							<Track track={track} index={index + 1} key={track.id} />
-						))}
-					</ul>
-				)}
+				<div>
+					{topGlobalplaylist && (
+						<ul className="tracks">
+							{topGlobalplaylist.map((track, index) => (
+								<Track track={track} index={index + 1} key={track.id} />
+							))}
+						</ul>
+					)}
+				</div>
 			</div>
 		);
 	}
