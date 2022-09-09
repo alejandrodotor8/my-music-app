@@ -33,22 +33,22 @@ function SignIn() {
 	}, []);
 
 	return (
-		<div className="signin">
-			<div className="signin__welcome">
+		<main className="signin">
+			<section className="signin__welcome">
 				<h2>
 					Enjoy top 50
 					<span className="signin__welcome--purple"> Spotify </span>global
 					songs
 				</h2>
 				<img src={img} alt="welcome image" />
-			</div>
+			</section>
 			{!isAuthenticated && (
 				<div className="signin__btn">
 					<PrimaryButton type="a" to={URL_AUTH} text="Sign in" />
 					<span>with Spotify</span>
 				</div>
 			)}
-		</div>
+		</main>
 	);
 }
 

@@ -11,32 +11,30 @@ import './styles/index.scss';
 
 function App() {
 	return (
-		<div className="App">
-			<AuthProvider>
-				<Header />
-				<Routes>
-					<Route
-						path="/"
-						element={
-							<ProtectedRoute>
-								<Home />
-							</ProtectedRoute>
-						}
-					/>
-					<Route path="/signin" element={<SigIn />} />
-					<Route
-						path="/profile/:id"
-						element={
-							<ProtectedRoute>
-								<Favorites />
-							</ProtectedRoute>
-						}
-					/>
-					<Route path="*" element={<h1>404</h1>} />
-				</Routes>
-				<Footer />
-			</AuthProvider>
-		</div>
+		<AuthProvider>
+			<Header />
+			<Routes>
+				<Route
+					path="/"
+					element={
+						<ProtectedRoute>
+							<Home />
+						</ProtectedRoute>
+					}
+				/>
+				<Route path="/signin" element={<SigIn />} />
+				<Route
+					path="/profile/:id"
+					element={
+						<ProtectedRoute>
+							<Favorites />
+						</ProtectedRoute>
+					}
+				/>
+				<Route path="*" element={<h1>404</h1>} />
+			</Routes>
+			<Footer />
+		</AuthProvider>
 	);
 }
 

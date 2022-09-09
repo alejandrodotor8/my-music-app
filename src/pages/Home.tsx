@@ -44,12 +44,13 @@ function Home(): JSX.Element {
 					});
 
 					setTopGlobalplaylist(tracks);
-					setTimeout(() => {
-						setLoading(false);
-					}, 200);
 				});
 			} catch (error) {
 				console.log(error);
+			} finally {
+				setTimeout(() => {
+					setLoading(false);
+				}, 200);
 			}
 		}
 	}, []);
@@ -58,10 +59,10 @@ function Home(): JSX.Element {
 		return <Loader />;
 	} else {
 		return (
-			<div className="home">
+			<main className="home">
 				<h2>Top 50 Global songs!</h2>
 				<p>Add the best tracks to you favorites playlist</p>
-				<div>
+				<section>
 					{topGlobalplaylist && (
 						<ul className="tracks">
 							{topGlobalplaylist.map((track, index) => (
@@ -69,8 +70,8 @@ function Home(): JSX.Element {
 							))}
 						</ul>
 					)}
-				</div>
-			</div>
+				</section>
+			</main>
 		);
 	}
 }

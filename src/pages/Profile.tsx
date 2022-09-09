@@ -20,8 +20,8 @@ export default function Profile() {
 
 	//if (user.id === id) {
 	return (
-		<div className="profile">
-			<div className="profile__content">
+		<main className="profile">
+			<section className="profile__content">
 				<h2>Welcome back {user.name}</h2>
 				<p>This are your favorites global songs</p>
 
@@ -32,13 +32,13 @@ export default function Profile() {
 						))}
 					</ul>
 				)}
-			</div>
+			</section>
 			{isAuthenticated && (
 				<button onClick={handleClick} className="profile__logout-btn">
 					Log out
 				</button>
 			)}
-		</div>
+		</main>
 	);
 	//} else return <div>You do not have permission to see this user profile</div>;
 }
