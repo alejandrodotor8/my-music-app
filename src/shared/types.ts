@@ -23,3 +23,11 @@ export interface ITrack {
 	image: string;
 	audio: string;
 }
+
+export interface IPlaylist {
+	id: string;
+	name: string;
+	image: string;
+	followers: number;
+	description: string;
+}

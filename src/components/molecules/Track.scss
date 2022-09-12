@@ -1,8 +1,7 @@
 @import "../../styles/variables.scss", "../../styles/mixins.scss";
 
 .tracks__item {
-	list-style: none;
-	width: 100%;
+	width: 280px;
 	height: 50px;
 	font-size: 1.5rem;
 	display: flex;
@@ -25,12 +24,7 @@
 	&-info {
 		width: 200px;
 		padding: 0 15px;
-		@include from($small) {
-			width: calc(80vw - 100px);
-		}
-		@include from($large) {
-			width: calc(70vw - 100px);
-		}
+
 		span {
 			display: block;
 			width: 100%;

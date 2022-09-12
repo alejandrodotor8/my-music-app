@@ -5,6 +5,7 @@ import ProtectedRoute from './shared/ProtectedRoute';
 import Header from './components/organisms/Header';
 import Footer from './components/organisms/Footer';
 import Home from './pages/Home';
+import PlaylistTracks from './pages/PlaylistTracks';
 import SigIn from './pages/SignIn';
 import Favorites from './pages/Profile';
 import './styles/index.scss';
@@ -24,7 +25,15 @@ function App() {
 				/>
 				<Route path="/signin" element={<SigIn />} />
 				<Route
-					path="/profile/:id"
+					path="/playlist/:playlistId"
+					element={
+						<ProtectedRoute>
+							<PlaylistTracks />
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path="/profile/:userId"
 					element={
 						<ProtectedRoute>
 							<Favorites />

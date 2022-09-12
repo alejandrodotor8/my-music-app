@@ -10,7 +10,7 @@ export default function Profile() {
 	const dispatch = useAppDispatch();
 	const { id } = useParams();
 	const user = useAppSelector((state) => state.user.value);
-	const favorites = useAppSelector((state) => state.playlist.value);
+	const favorites = useAppSelector((state) => state.favoritesTracks.value);
 
 	const handleClick = (): void => {
 		logout();

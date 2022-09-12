@@ -1,7 +1,7 @@
 import ButtonFav from '../atoms/Button-fav';
 import AudioPlayer from '../atoms/Audio-player';
 import { useAppDispatch, useAppSelector } from '../../Hooks/reduxHooks';
-import { changeFav } from '../../store/slices/playlistSlice';
+import { changeFav } from '../../store/slices/favoritesTracksSlice';
 
 import type { ITrack } from '../../shared/types';
 import './Track.scss';
@@ -14,7 +14,7 @@ interface Props {
 export default function Track({ track, index }: Props) {
 	const dispatch = useAppDispatch();
 	const handleClick = (track: ITrack) => dispatch(changeFav(track));
-	const favPlaylist = useAppSelector((state) => state.playlist.value);
+	const favPlaylist = useAppSelector((state) => state.favoritesTracks.value);
 
 	return (
 		<li className="tracks__item">
