@@ -1,6 +1,4 @@
 import axios, { AxiosInstance } from 'axios';
-import { useAuth } from '../Hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
 
 class SpotifyApi {
 	token: string = '';
@@ -10,9 +8,6 @@ class SpotifyApi {
 		this.api = this.generateAxiosInstance();
 	}
 	generateAxiosInstance() {
-		const { logout } = useAuth();
-		const navigate = useNavigate();
-
 		const axiosInstance = axios.create({
 			baseURL: 'https://api.spotify.com/v1',
 			headers: {
@@ -27,8 +22,8 @@ class SpotifyApi {
 			(err) => {
 				console.log(err);
 				if (err.response.data.message === 'The access token expired') {
-					logout();
-					navigate('/signin');
+					localStorage.removeItem('token_spotify');
+					location.reload();
 				}
 				return err;
 			}
