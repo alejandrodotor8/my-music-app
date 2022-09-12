@@ -17,14 +17,10 @@ class SpotifyApi {
 		});
 		axiosInstance.interceptors.response.use(
 			(response) => {
-				if (response.status === 401 && response.statusText) {
-					console.log('error en consulta IF');
-				}
-				console.log(response);
 				return response;
 			},
 			(err) => {
-				console.log('entro a err:', err);
+				console.log('entro a err:', err.response.data);
 				return err;
 			}
 		);
