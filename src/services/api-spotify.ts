@@ -15,6 +15,20 @@ class SpotifyApi {
 				Authorization: 'Bearer ' + this.token,
 			},
 		});
+		axiosInstance.interceptors.response.use(
+			(response) => {
+				return response;
+			},
+			(err) => {
+				console.log(err);
+				const errorMsg = err.response.data.error.message;
+				if (errorMsg === 'The access token expired') {
+					window.localStorage.removeItem('token_spotify');
+					window.location.reload();
+				}
+				return err;
+			}
+		);
 		return axiosInstance;
 	}
 
