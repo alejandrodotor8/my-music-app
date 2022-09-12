@@ -21,10 +21,8 @@ class SpotifyApi {
 			},
 			(err) => {
 				console.log(err);
-				if (
-					err.response.data.error.message === 'The access token expired'
-				) {
-					console.log('entro if');
+				const errorMsg = err.response.data.error.message;
+				if (errorMsg === 'The access token expired') {
 					window.localStorage.removeItem('token_spotify');
 					window.location.reload();
 				}
