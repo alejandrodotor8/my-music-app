@@ -1,15 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { ITrack } from '../../shared/types';
 
-interface playlistState {
+interface favoritesTracksState {
 	value: ITrack[];
 }
-const initialState: playlistState = {
+const initialState: favoritesTracksState = {
 	value: [],
 };
 
-export const playlistSlice = createSlice({
-	name: 'playlist',
+export const favoritesTracksSlice = createSlice({
+	name: '@favoritesTracks',
 	initialState,
 	reducers: {
 		changeFav: (state, action) => {
@@ -23,4 +23,4 @@ export const playlistSlice = createSlice({
 	},
 });
 
-export const { changeFav } = playlistSlice.actions;
+export const { changeFav } = favoritesTracksSlice.actions;

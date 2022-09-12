@@ -18,14 +18,18 @@ export default function Audio({ image, audioUrl }: Props) {
 	};
 	return (
 		<div className="player">
-			<audio ref={audio} src={audioUrl}></audio>
 			<img src={image} alt="album image" />
-			<button
-				className={`player__play-icon ${
-					isPlaying ? 'player__play-icon--pause' : ''
-				}`}
-				onClick={() => handleClick(isPlaying)}
-			></button>
+			{audioUrl && (
+				<>
+					<audio ref={audio} src={audioUrl}></audio>
+					<button
+						className={`player__play-icon ${
+							isPlaying ? 'player__play-icon--pause' : ''
+						}`}
+						onClick={() => handleClick(isPlaying)}
+					></button>
+				</>
+			)}
 		</div>
 	);
 }

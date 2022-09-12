@@ -1,52 +1,40 @@
 import { useState, useEffect } from 'react';
 import { SpotifyApi } from '../services/api-spotify';
-import { useAppDispatch } from '../Hooks/reduxHooks';
-import { setUser } from '../store/slices/userSlice';
+import { useAppSelector } from '../Hooks/reduxHooks';
+import Playlist from '../components/molecules/Playlist';
 import Loader from '../components/atoms/Loader';
-import Track from '../components/molecules/Track';
-
-import type { ITrack } from '../shared/types';
+import type { IPlaylist } from '../shared/types';
 
 function Home(): JSX.Element {
-	const [token] = useState(localStorage.getItem('token_spotify'));
-	const [topGlobalplaylist, setTopGlobalplaylist] = useState<ITrack[]>();
 	const [loading, setLoading] = useState(false);
-	const dispatch = useAppDispatch();
+	const [playlists, setPlaylists] = useState<IPlaylist[]>([]);
+	const playlistsState = useAppSelector((state) => state.playlists.value);
 
 	useEffect(() => {
 		console.log('Render Home');
-
-		if (token) {
+		const token = localStorage.getItem('token_spotify');
+		if (token && playlistsState.length > 0) {
 			try {
 				setLoading(true);
 				const api = new SpotifyApi(token);
 
-				api.getCurrentUser().then((res) => {
-					dispatch(
-						setUser({
-							id: res.data.id,
-							name: res.data.display_name,
-							image: res.data.images[0].url,
-						})
-					);
-				});
+				const promises = playlistsState.map((item) =>
+					api.getPlaylist(item)
+				);
 
-				api.getPlaylistTracks('37i9dQZEVXbMDoHDwVN2tF').then((res) => {
-					const tracks: ITrack[] = [];
-					res.data.items.forEach((item: any) => {
-						tracks.push({
-							id: item.track.id,
-							name: item.track.name,
-							artists: item.track.artists.map((item: any) => item.name),
-							image: item.track.album.images[0].url,
-							audio: item.track.preview_url,
+				Promise.all(promises).then((values) => {
+					const _playlists: IPlaylist[] = [];
+					values.forEach((value: any) => {
+						_playlists.push({
+							id: value.data.id,
+							name: value.data.name,
+							image: value.data.images[0].url,
+							followers: value.data.followers.total,
+							description: value.data.description,
 						});
 					});
-
-					setTopGlobalplaylist(tracks);
-					setTimeout(() => {
-						setLoading(false);
-					}, 200);
+					setPlaylists(_playlists);
+					setLoading(false);
 				});
 			} catch (error) {
 				console.log(error);
@@ -58,19 +46,26 @@ function Home(): JSX.Element {
 		return <Loader />;
 	} else {
 		return (
-			<div className="home">
-				<h2>Top 50 Global songs!</h2>
-				<p>Add the best tracks to you favorites playlist</p>
-				<div>
-					{topGlobalplaylist && (
-						<ul className="tracks">
-							{topGlobalplaylist.map((track, index) => (
-								<Track track={track} index={index + 1} key={track.id} />
+			<main className="home">
+				<h2>Best Spotify playlists!</h2>
+				<p>choose one and add the best tracks to you favorites playlist</p>
+				<section>
+					{playlists && (
+						<ul className="playlist">
+							{playlists.map((item) => (
+								<li className="playlist__item" key={item.id}>
+									<Playlist
+										id={item.id}
+										name={item.name}
+										image={item.image}
+										followers={item.followers}
+									/>
+								</li>
 							))}
 						</ul>
 					)}
-				</div>
-			</div>
+				</section>
+			</main>
 		);
 	}
 }

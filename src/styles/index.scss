@@ -27,8 +27,11 @@ a {
 	color: $purple-dark;
 	text-decoration: inherit;
 }
+li {
+	list-style: none;
+}
 
-.App {
+#root {
 	display: flex;
 	flex-wrap: nowrap;
 	flex-direction: column;
@@ -88,7 +91,7 @@ a {
 	display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
-	justify-content: center;
+	justify-content: start;
 	align-items: center;
 	@include from($small) {
 		width: 80%;
@@ -103,13 +106,23 @@ a {
 	}
 	p {
 		margin-top: 5px;
-		margin-bottom: 20px;
+		margin-bottom: 5px;
 		text-align: center;
+	}
+	section {
+		width: 100%;
 	}
 }
 
 .tracks {
 	width: 100%;
+	margin-top: 10px;
+	display: grid;
+	place-items: center;
+	grid-template-columns: 1fr;
+	@include from($medium) {
+		grid-template-columns: 1fr 1fr;
+	}
 }
 
 /* PAGE PROFILE*/
@@ -123,15 +136,9 @@ a {
 	flex-wrap: nowrap;
 	justify-content: space-between;
 	align-items: center;
-	@include from($small) {
-		width: 80%;
-		margin: 20px 10%;
-	}
-	@include from($large) {
-		width: 70%;
-		margin: 20px 15%;
-	}
+
 	&__content {
+		width: 100%;
 		h2 {
 			font-size: 2rem;
 			text-align: center;
@@ -154,5 +161,28 @@ a {
 			border: 1px solid $purple-dark;
 			color: $purple-dark;
 		}
+	}
+}
+/*PLAYLIST TRACKS PAGE*/
+.playlist-tracks {
+	width: 90%;
+	margin: 20px 5%;
+	min-height: calc(100vh - 135px);
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: start;
+	align-items: center;
+
+	h2 {
+		font-size: 2rem;
+	}
+	p {
+		margin-top: 5px;
+		margin-bottom: 5px;
+		text-align: center;
+	}
+	section {
+		width: 100%;
 	}
 }
