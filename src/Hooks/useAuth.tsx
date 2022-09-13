@@ -20,12 +20,12 @@ function useProviderAuth() {
 	const [isAuthenticated, setIsAuthenticated] = useState(false);
 
 	const login = (token: string) => {
-		localStorage.setItem('token_spotify', token);
+		localStorage.setItem('token', token);
 		setIsAuthenticated(true);
 	};
 
 	const logout = () => {
-		localStorage.removeItem('token_spotify');
+		localStorage.removeItem('token');
 		setIsAuthenticated(false);
 	};
 	return { isAuthenticated, login, logout };

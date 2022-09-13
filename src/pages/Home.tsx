@@ -12,7 +12,7 @@ function Home(): JSX.Element {
 
 	useEffect(() => {
 		console.log('Render Home');
-		const token = localStorage.getItem('token_spotify');
+		const token = localStorage.getItem('token');
 		if (token && playlistsState.length > 0) {
 			try {
 				setLoading(true);

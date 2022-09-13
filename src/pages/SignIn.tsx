@@ -33,7 +33,7 @@ function SignIn() {
 
 	useEffect(() => {
 		const hash = location.hash;
-		let token_LS = localStorage.getItem('token_spotify');
+		let token_LS = localStorage.getItem('token');
 
 		//if token does not exist in LS and there is a hash
 		if (!token_LS && hash) {

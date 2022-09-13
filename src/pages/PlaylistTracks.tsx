@@ -13,7 +13,7 @@ function PlaylistTracks(): JSX.Element {
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
-		const token = localStorage.getItem('token_spotify');
+		const token = localStorage.getItem('token');
 		if (token && playlistId) {
 			try {
 				setLoading(true);
