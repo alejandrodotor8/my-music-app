@@ -3,8 +3,8 @@ import { SpotifyApi } from '../services/api-spotify';
 import { useAppSelector, useAppDispatch } from '../Hooks/reduxHooks';
 import { setFavoritesPlaylist } from '../store/slices/favoritePlaylistSlice';
 import { setInitialFavorites } from '../store/slices/favoritesTracksSlice';
-import Playlist from '../components/molecules/Playlist';
-import Loader from '../components/atoms/Loader';
+import Playlist from '../components/molecules/Playlist/Playlist';
+import Loader from '../components/atoms/Loader/Loader';
 import type { IPlaylist, IPlaylistFav, ITrack } from '../shared/types';
 
 export default function Home(): JSX.Element {

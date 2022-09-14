@@ -4,8 +4,8 @@ import { useAppSelector, useAppDispatch } from '../Hooks/reduxHooks';
 import { resetUser } from '../store/slices/userSlice';
 
 import { useAuth } from '../Hooks/useAuth';
-import Track from '../components/molecules/Track';
-import Loader from '../components/atoms/Loader';
+import Track from '../components/molecules/Track/Track';
+import Loader from '../components/atoms/Loader/Loader';
 
 export default function Profile() {
 	const { logout, isAuthenticated } = useAuth();

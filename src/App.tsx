@@ -2,8 +2,8 @@ import { Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './Hooks/useAuth';
 
 import ProtectedRoute from './shared/ProtectedRoute';
-import Header from './components/organisms/Header';
-import Footer from './components/organisms/Footer';
+import Header from './components/organisms/Header/Header';
+import Footer from './components/organisms/Footer/Footer';
 import Home from './pages/Home';
 import PlaylistTracks from './pages/PlaylistTracks';
 import SigIn from './pages/SignIn';

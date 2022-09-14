@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { SpotifyApi } from '../services/api-spotify';
-import Loader from '../components/atoms/Loader';
-import Track from '../components/molecules/Track';
+import Loader from '../components/atoms/Loader/Loader';
+import Track from '../components/molecules/Track/Track';
 
 import type { ITrack, IPlaylist } from '../shared/types';
 

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '../../Hooks/reduxHooks';
+import { useAppSelector } from '../../../Hooks/reduxHooks';
 
 import './Header.scss';
 import logo from '/vite.svg';

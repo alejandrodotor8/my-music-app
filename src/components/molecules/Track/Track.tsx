@@ -1,9 +1,9 @@
-import ButtonFav from '../atoms/Button-fav';
-import AudioPlayer from '../atoms/Audio-player';
-import { useAppDispatch, useAppSelector } from '../../Hooks/reduxHooks';
-import { changeFav } from '../../store/slices/favoritesTracksSlice';
+import ButtonFav from '../../atoms/Button-fav/Button-fav';
+import AudioPlayer from '../../atoms/Audio-player/Audio-player';
+import { useAppDispatch, useAppSelector } from '../../../Hooks/reduxHooks';
+import { changeFav } from '../../../store/slices/favoritesTracksSlice';
 
-import type { ITrack } from '../../shared/types';
+import type { ITrack } from '../../../shared/types';
 import './Track.scss';
 
 interface Props {

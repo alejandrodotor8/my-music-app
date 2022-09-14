@@ -5,7 +5,7 @@ import { setUser } from '../store/slices/userSlice';
 import { SpotifyApi } from '../services/api-spotify';
 import { useAppDispatch } from '../Hooks/reduxHooks';
 
-import PrimaryButton from '../components/atoms/Button-primary';
+import PrimaryButton from '../components/atoms/Button-primary/Button-primary';
 import img from '../assets/img/signinwelcome.png';
 
 function SignIn() {
