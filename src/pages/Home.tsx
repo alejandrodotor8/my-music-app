@@ -3,6 +3,7 @@ import { SpotifyApi } from '../services/api-spotify';
 import { useAppSelector, useAppDispatch } from '../Hooks/reduxHooks';
 import { setFavoritesPlaylist } from '../store/slices/favoritePlaylistSlice';
 import { setInitialFavorites } from '../store/slices/favoritesTracksSlice';
+import MainContent from '../components/templates/Main-content/Main-content';
 import Playlist from '../components/molecules/Playlist/Playlist';
 import Loader from '../components/atoms/Loader/Loader';
 import type { IPlaylist, IPlaylistFav, ITrack } from '../shared/types';
@@ -86,26 +87,25 @@ export default function Home(): JSX.Element {
 		return <Loader />;
 	} else {
 		return (
-			<main className="home">
-				<h2>Best Spotify playlists!</h2>
-				<p>choose one and add the best tracks to you favorites playlist</p>
-				<section>
-					{playlists && (
-						<ul className="playlist">
-							{playlists.map((item) => (
-								<li className="playlist__item" key={item.id}>
-									<Playlist
-										id={item.id}
-										name={item.name}
-										image={item.image}
-										followers={item.followers}
-									/>
-								</li>
-							))}
-						</ul>
-					)}
-				</section>
-			</main>
+			<MainContent
+				title="Best Spotify playlists!"
+				description="choose one and add the best tracks to you favorites playlist"
+			>
+				{playlists && (
+					<ul className="playlist">
+						{playlists.map((item) => (
+							<li className="playlist__item" key={item.id}>
+								<Playlist
+									id={item.id}
+									name={item.name}
+									image={item.image}
+									followers={item.followers}
+								/>
+							</li>
+						))}
+					</ul>
+				)}
+			</MainContent>
 		);
 	}
 }

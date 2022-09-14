@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { SpotifyApi } from '../services/api-spotify';
+import MainContent from '../components/templates/Main-content/Main-content';
 import Loader from '../components/atoms/Loader/Loader';
 import Track from '../components/molecules/Track/Track';
 
@@ -55,24 +56,27 @@ function PlaylistTracks(): JSX.Element {
 		return <Loader />;
 	} else {
 		return (
-			<main className="playlist-tracks">
-				<h2>{playlistInfo?.name} songs!</h2>
-				<p>{playlistInfo?.description}</p>
-				<section>
-					{playlistTracks && token && (
-						<ul className="tracks">
-							{playlistTracks.map((track, index) => (
-								<Track
-									key={track.id}
-									track={track}
-									index={index + 1}
-									token={token}
-								/>
-							))}
-						</ul>
-					)}
-				</section>
-			</main>
+			<>
+				{playlistInfo && (
+					<MainContent
+						title={playlistInfo.name + 'songs'}
+						description={playlistInfo.description}
+					>
+						{playlistTracks && token && (
+							<ul className="tracks">
+								{playlistTracks.map((track, index) => (
+									<Track
+										key={track.id}
+										track={track}
+										index={index + 1}
+										token={token}
+									/>
+								))}
+							</ul>
+						)}
+					</MainContent>
+				)}
+			</>
 		);
 	}
 }

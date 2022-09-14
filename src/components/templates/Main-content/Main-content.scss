@@ -1,0 +1,25 @@
+@import "../../../styles/variables.scss", "../../../styles/mixins.scss";
+
+/*PLAYLIST TRACKS PAGE*/
+.main-content {
+	width: 90%;
+	margin: 20px 5%;
+	min-height: calc(100vh - 135px);
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: start;
+	align-items: center;
+
+	&__title {
+		font-size: 2rem;
+	}
+	&__description {
+		margin-top: 5px;
+		margin-bottom: 5px;
+		text-align: center;
+	}
+	&__section {
+		width: 100%;
+	}
+}

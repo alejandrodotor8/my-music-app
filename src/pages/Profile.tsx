@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../Hooks/reduxHooks';
 import { resetUser } from '../store/slices/userSlice';
-
+import MainContent from '../components/templates/Main-content/Main-content';
 import { useAuth } from '../Hooks/useAuth';
 import Track from '../components/molecules/Track/Track';
 import Loader from '../components/atoms/Loader/Loader';
@@ -30,30 +30,28 @@ export default function Profile() {
 		return <Loader />;
 	} else {
 		return (
-			<main className="profile">
-				<section className="profile__content">
-					<h2>Welcome back {user.name}</h2>
-					<p>This are your favorites global songs</p>
-
-					{favoritesTracks && token && (
-						<ul className="tracks">
-							{favoritesTracks.map((track, index) => (
-								<Track
-									key={track.id}
-									index={index + 1}
-									track={track}
-									token={token}
-								/>
-							))}
-						</ul>
-					)}
-				</section>
+			<MainContent
+				title={'Welcome back ' + user.name}
+				description="This are your favorites global songs"
+			>
+				{favoritesTracks && token && (
+					<ul className="tracks">
+						{favoritesTracks.map((track, index) => (
+							<Track
+								key={track.id}
+								index={index + 1}
+								track={track}
+								token={token}
+							/>
+						))}
+					</ul>
+				)}
 				{isAuthenticated && (
 					<button onClick={handleClick} className="profile__logout-btn">
 						Log out
 					</button>
 				)}
-			</main>
+			</MainContent>
 		);
 	}
 }
