@@ -1,9 +1,11 @@
+import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
-import Home from '../pages/Home';
-import PlaylistTracks from '../pages/PlaylistTracks';
-import Favorites from '../pages/Profile';
-import SigIn from '../pages/SignIn';
+
+const Home = lazy(() => import('../pages/Home'));
+const PlaylistTracks = lazy(() => import('../pages/PlaylistTracks'));
+const Favorites = lazy(() => import('../pages/Profile'));
+const SigIn = lazy(() => import('../pages/SignIn'));
 
 export default function Router() {
 	return (
@@ -13,27 +15,33 @@ export default function Router() {
 			<Route
 				path="/"
 				element={
-					<ProtectedRoute>
-						<Home />
-					</ProtectedRoute>
+					<Suspense fallback={<>...</>}>
+						<ProtectedRoute>
+							<Home />
+						</ProtectedRoute>
+					</Suspense>
 				}
 			/>
 
 			<Route
 				path="/playlist/:playlistId"
 				element={
-					<ProtectedRoute>
-						<PlaylistTracks />
-					</ProtectedRoute>
+					<Suspense fallback={<>...</>}>
+						<ProtectedRoute>
+							<PlaylistTracks />
+						</ProtectedRoute>
+					</Suspense>
 				}
 			/>
 			<Route
 				path="/profile/:userId"
-				element={() => (
-					<ProtectedRoute>
-						<Favorites />
-					</ProtectedRoute>
-				)}
+				element={
+					<Suspense fallback={<>...</>}>
+						<ProtectedRoute>
+							<Favorites />
+						</ProtectedRoute>
+					</Suspense>
+				}
 			/>
 		</Routes>
 	);
