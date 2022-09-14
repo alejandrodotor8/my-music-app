@@ -5,14 +5,14 @@ import { setUser } from '../store/slices/userSlice';
 import { SpotifyApi } from '../services/api-spotify';
 import { useAppDispatch } from '../Hooks/reduxHooks';
 
-import PrimaryButton from '../components/atoms/Button-primary';
+import PrimaryButton from '../components/atoms/Button-primary/Button-primary';
 import img from '../assets/img/signinwelcome.png';
 
 function SignIn() {
 	const env = import.meta.env;
-	const URL_AUTH = `${env.VITE_AUTH_ENDPOINT}?client_id=${env.VITE_CLIENT_ID}&redirect_uri=${env.VITE_REDIRECT_URI}&response_type=${env.VITE_RESPONSE_TYPE}`;
+	const scope = 'playlist-modify-public';
+	const URL_AUTH = `${env.VITE_AUTH_ENDPOINT}?client_id=${env.VITE_CLIENT_ID}&redirect_uri=${env.VITE_REDIRECT_URI}&response_type=${env.VITE_RESPONSE_TYPE}&scope=${scope}`;
 
-	//const scope = 'user-library-read';
 	const { login, isAuthenticated } = useAuth();
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
@@ -25,7 +25,7 @@ function SignIn() {
 				setUser({
 					id: res.data.id,
 					name: res.data.display_name,
-					image: res.data.images[0].url,
+					image: res.data.images[0]?.url,
 				})
 			);
 		});
@@ -33,7 +33,7 @@ function SignIn() {
 
 	useEffect(() => {
 		const hash = location.hash;
-		let token_LS = localStorage.getItem('token_spotify');
+		let token_LS = localStorage.getItem('token');
 
 		//if token does not exist in LS and there is a hash
 		if (!token_LS && hash) {

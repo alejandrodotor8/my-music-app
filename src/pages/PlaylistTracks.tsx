@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { SpotifyApi } from '../services/api-spotify';
-import Loader from '../components/atoms/Loader';
-import Track from '../components/molecules/Track';
+import MainContent from '../components/templates/Main-content/Main-content';
+import Loader from '../components/atoms/Loader/Loader';
+import Track from '../components/molecules/Track/Track';
 
 import type { ITrack, IPlaylist } from '../shared/types';
 
@@ -11,9 +12,9 @@ function PlaylistTracks(): JSX.Element {
 	const [playlistTracks, setPlaylistTracks] = useState<ITrack[]>([]);
 	const [playlistInfo, setPlaylistInfo] = useState<IPlaylist>();
 	const [loading, setLoading] = useState(false);
+	const [token] = useState(localStorage.getItem('token'));
 
 	useEffect(() => {
-		const token = localStorage.getItem('token_spotify');
 		if (token && playlistId) {
 			try {
 				setLoading(true);
@@ -23,7 +24,7 @@ function PlaylistTracks(): JSX.Element {
 					setPlaylistInfo({
 						id: res.data.id,
 						name: res.data.name,
-						image: res.data.images[0].url,
+						image: res.data.images[0]?.url,
 						description: res.data.description,
 						followers: res.data.followers.total,
 					});
@@ -35,7 +36,7 @@ function PlaylistTracks(): JSX.Element {
 							id: item.track.id,
 							name: item.track.name,
 							artists: item.track.artists.map((item: any) => item.name),
-							image: item.track.album.images[0].url,
+							image: item.track.album.images[0]?.url,
 							audio: item.track.preview_url,
 						});
 					});
@@ -55,19 +56,27 @@ function PlaylistTracks(): JSX.Element {
 		return <Loader />;
 	} else {
 		return (
-			<main className="playlist-tracks">
-				<h2>{playlistInfo?.name} songs!</h2>
-				<p>{playlistInfo?.description}</p>
-				<section>
-					{playlistTracks && (
-						<ul className="tracks">
-							{playlistTracks.map((track, index) => (
-								<Track track={track} index={index + 1} key={track.id} />
-							))}
-						</ul>
-					)}
-				</section>
-			</main>
+			<>
+				{playlistInfo && (
+					<MainContent
+						title={playlistInfo.name + 'songs'}
+						description={playlistInfo.description}
+					>
+						{playlistTracks && token && (
+							<ul className="tracks">
+								{playlistTracks.map((track, index) => (
+									<Track
+										key={track.id}
+										track={track}
+										index={index + 1}
+										token={token}
+									/>
+								))}
+							</ul>
+						)}
+					</MainContent>
+				)}
+			</>
 		);
 	}
 }

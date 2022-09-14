@@ -1,4 +1,4 @@
-import type { IButton } from '../../shared/types';
+import type { IButton } from '../../../shared/types';
 import './Button-primary.scss';
 
 function Button({ text, type, to }: IButton): JSX.Element {

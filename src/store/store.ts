@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import { userSlice } from './slices/userSlice';
 import { playlistsSlice } from './slices/playlistsSlice';
 import { favoritesTracksSlice } from './slices/favoritesTracksSlice';
+import { favoritesPlaylistSlice } from './slices/favoritePlaylistSlice';
 
 export const store = configureStore({
 	reducer: {
 		user: userSlice.reducer,
 		favoritesTracks: favoritesTracksSlice.reducer,
 		playlists: playlistsSlice.reducer,
+		favoritePlaylist: favoritesPlaylistSlice.reducer,
 	},
 });
 
