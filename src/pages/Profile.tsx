@@ -10,6 +10,7 @@ import Loader from '../components/atoms/Loader';
 export default function Profile() {
 	const { logout, isAuthenticated } = useAuth();
 	const [loading, setLoading] = useState(false);
+	const [token] = useState(localStorage.getItem('token'));
 
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
@@ -34,10 +35,15 @@ export default function Profile() {
 					<h2>Welcome back {user.name}</h2>
 					<p>This are your favorites global songs</p>
 
-					{favoritesTracks && (
+					{favoritesTracks && token && (
 						<ul className="tracks">
 							{favoritesTracks.map((track, index) => (
-								<Track track={track} index={index + 1} key={track.id} />
+								<Track
+									key={track.id}
+									index={index + 1}
+									track={track}
+									token={token}
+								/>
 							))}
 						</ul>
 					)}
