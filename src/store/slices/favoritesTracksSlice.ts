@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { SpotifyApi } from '../../services/api-spotify';
 import type { ITrack } from '../../shared/types';
 
 interface favoritesTracksState {
@@ -13,14 +14,29 @@ export const favoritesTracksSlice = createSlice({
 	initialState,
 	reducers: {
 		changeFav: (state, action) => {
+			const api = new SpotifyApi(action.payload.token);
 			let index = state.value.findIndex(
-				(track) => track.id === action.payload.id
+				(track) => track.id === action.payload.track.id
 			);
 
-			if (index > -1) state.value.splice(index, 1);
-			else state.value.push(action.payload);
+			if (index > -1) {
+				state.value.splice(index, 1);
+				api.removeTrackFavPlaylist(
+					action.payload.favPlaylistID,
+					action.payload.track.id
+				);
+			} else {
+				state.value.push(action.payload.track);
+				api.addTrackFavPlaylist(
+					action.payload.favPlaylistID,
+					action.payload.track.id
+				);
+			}
+		},
+		setInitialFavorites: (state, action) => {
+			state.value = action.payload;
 		},
 	},
 });
 
-export const { changeFav } = favoritesTracksSlice.actions;
+export const { changeFav, setInitialFavorites } = favoritesTracksSlice.actions;

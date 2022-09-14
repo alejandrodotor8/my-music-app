@@ -31,3 +31,5 @@ export interface IPlaylist {
 	followers: number;
 	description: string;
 }
+
+export interface IPlaylistFav extends Omit<IPlaylist, 'followers'> {}

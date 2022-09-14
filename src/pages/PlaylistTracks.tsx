@@ -11,9 +11,9 @@ function PlaylistTracks(): JSX.Element {
 	const [playlistTracks, setPlaylistTracks] = useState<ITrack[]>([]);
 	const [playlistInfo, setPlaylistInfo] = useState<IPlaylist>();
 	const [loading, setLoading] = useState(false);
+	const [token] = useState(localStorage.getItem('token'));
 
 	useEffect(() => {
-		const token = localStorage.getItem('token');
 		if (token && playlistId) {
 			try {
 				setLoading(true);
@@ -23,7 +23,7 @@ function PlaylistTracks(): JSX.Element {
 					setPlaylistInfo({
 						id: res.data.id,
 						name: res.data.name,
-						image: res.data.images[0].url,
+						image: res.data.images[0]?.url,
 						description: res.data.description,
 						followers: res.data.followers.total,
 					});
@@ -35,7 +35,7 @@ function PlaylistTracks(): JSX.Element {
 							id: item.track.id,
 							name: item.track.name,
 							artists: item.track.artists.map((item: any) => item.name),
-							image: item.track.album.images[0].url,
+							image: item.track.album.images[0]?.url,
 							audio: item.track.preview_url,
 						});
 					});
@@ -59,10 +59,15 @@ function PlaylistTracks(): JSX.Element {
 				<h2>{playlistInfo?.name} songs!</h2>
 				<p>{playlistInfo?.description}</p>
 				<section>
-					{playlistTracks && (
+					{playlistTracks && token && (
 						<ul className="tracks">
 							{playlistTracks.map((track, index) => (
-								<Track track={track} index={index + 1} key={track.id} />
+								<Track
+									key={track.id}
+									track={track}
+									index={index + 1}
+									token={token}
+								/>
 							))}
 						</ul>
 					)}
