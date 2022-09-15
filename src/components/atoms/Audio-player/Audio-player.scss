@@ -1,13 +1,10 @@
-@import "../../../styles/variables.scss";
+@import "../../../styles/variables.scss", "../../../styles/mixins.scss";
 
 .player {
 	width: 40px;
 	height: 40px;
 	position: relative;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-wrap: nowrap;
+	@include flex();
 	margin-left: 10px;
 
 	&__play-icon {
@@ -20,7 +17,6 @@
 		border-style: solid;
 		border-width: 10px 0 10px 20px;
 		border-color: transparent transparent transparent #f9f9f9ab;
-
 		cursor: pointer;
 		transition: 100ms border-width ease;
 		&--pause {
