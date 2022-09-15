@@ -19,7 +19,7 @@ body {
 	width: 100vw;
 	height: 100vh;
 	background-color: $coconut-light;
-	font-size: 1.6rem;
+	font-size: $font-text-base;
 	color: $black;
 }
 a {
@@ -32,52 +32,42 @@ li {
 }
 
 #root {
-	display: flex;
-	flex-wrap: nowrap;
-	flex-direction: column;
-	align-items: center;
-	justify-content: space-between;
 	width: 100vw;
+	@include flex($justify: space-between, $direction: column);
 }
 /* PAGE SIGNIN */
 .signin {
 	width: 80%;
 	min-height: calc(100vh - 95px);
-	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	justify-content: center;
-	align-items: center;
 	margin: 0 10%;
-	div {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		margin: 20px 0;
-	}
-	&__btn span {
-		padding: 8px;
-	}
+	@include flex($direction: column);
 	&__welcome {
-		h2 {
-			font-size: 3rem;
+		@include flex($direction: column);
+		&-title {
+			font-size: $font-title;
 			text-align: end;
 			font-weight: 800;
 			@include from($medium) {
-				font-size: 4rem;
+				font-size: $font-title-big;
+			}
+			&--purple {
+				color: $purple-dark;
 			}
 		}
-		&--purple {
-			color: $purple-dark;
-		}
-		img {
+		&-img {
 			width: 90%;
 			margin-right: 10%;
 			@include from($medium) {
 				width: 50%;
 				margin-right: 0;
 			}
+		}
+	}
+	&__btn {
+		margin: 20px 0;
+		@include flex($direction: column);
+		span {
+			padding: 8px;
 		}
 	}
 }
