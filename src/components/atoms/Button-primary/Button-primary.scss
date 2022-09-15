@@ -1,6 +1,7 @@
 @import "../../../styles/variables.scss";
+
 a.button-primary {
-	background-color: #4f57e9;
+	background-color: $purple-dark;
 	border-radius: 6px;
 	box-shadow: rgb(50 50 93 / 10%) 0 0 0 1px inset,
 		rgb(50 50 93 / 10%) 0 2px 5px 0, rgb(0 0 0 / 7%) 0 1px 1px 0;
