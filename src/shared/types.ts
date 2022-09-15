@@ -4,11 +4,14 @@ export interface IPropsChildren {
 	children?: ReactNode;
 }
 
-type Btn = 'a' | 'b';
+type Element = 'link' | 'button';
+type Type = 'primary' | 'secondary';
 export interface IButton {
-	text: string;
-	to: string;
-	type: Btn;
+	label: string;
+	element: Element;
+	type?: Type;
+	to?: string;
+	handleClick?: () => void;
 }
 
 export interface IUser {

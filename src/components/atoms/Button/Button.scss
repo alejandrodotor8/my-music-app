@@ -1,0 +1,23 @@
+@import "../../../styles/variables.scss";
+
+.button {
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: $font-text-base;
+	line-height: 1.15;
+	margin: 12px auto;
+	padding: 10px 25px;
+	text-align: center;
+	text-decoration: none;
+	user-select: none;
+
+	&--primary {
+		background-color: $purple-dark;
+		color: #ffffff;
+	}
+	&--secondary {
+		color: $black;
+		background-color: $white;
+		border: 1px solid $black;
+	}
+}

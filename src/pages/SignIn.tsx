@@ -5,7 +5,7 @@ import { setUser } from '../store/slices/userSlice';
 import { SpotifyApi } from '../services/api-spotify';
 import { useAppDispatch } from '../Hooks/reduxHooks';
 
-import PrimaryButton from '../components/atoms/Button-primary/Button-primary';
+import Button from '../components/atoms/Button/Button';
 import img from '../assets/img/signinwelcome.png';
 
 function SignIn() {
@@ -70,7 +70,7 @@ function SignIn() {
 			</section>
 			{!isAuthenticated && (
 				<div className="signin__btn">
-					<PrimaryButton type="a" to={URL_AUTH} text="Sign in" />
+					<Button element="link" to={URL_AUTH} label="Sign in" />
 					<span>with Spotify</span>
 				</div>
 			)}
