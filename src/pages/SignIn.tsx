@@ -5,7 +5,7 @@ import { setUser } from '../store/slices/userSlice';
 import { SpotifyApi } from '../services/api-spotify';
 import { useAppDispatch } from '../Hooks/reduxHooks';
 
-import PrimaryButton from '../components/atoms/Button-primary/Button-primary';
+import Button from '../components/atoms/Button/Button';
 import img from '../assets/img/signinwelcome.png';
 
 function SignIn() {
@@ -57,16 +57,20 @@ function SignIn() {
 	return (
 		<main className="signin">
 			<section className="signin__welcome">
-				<h2>
+				<h2 className="signin__welcome-title">
 					Enjoy top 50
-					<span className="signin__welcome--purple"> Spotify </span>global
-					songs
+					<span className="signin__welcome.title--purple"> Spotify </span>
+					global songs
 				</h2>
-				<img src={img} alt="welcome image" />
+				<img
+					className="signin__welcome-img"
+					src={img}
+					alt="welcome image"
+				/>
 			</section>
 			{!isAuthenticated && (
 				<div className="signin__btn">
-					<PrimaryButton type="a" to={URL_AUTH} text="Sign in" />
+					<Button element="link" to={URL_AUTH} label="Sign in" />
 					<span>with Spotify</span>
 				</div>
 			)}
