@@ -2,10 +2,10 @@ import { createSlice } from '@reduxjs/toolkit';
 import { SpotifyApi } from '../../services/api-spotify';
 import type { ITrack } from '../../shared/types';
 
-interface favoritesTracksState {
+interface FavoritesTracksState {
 	value: ITrack[];
 }
-const initialState: favoritesTracksState = {
+const initialState: FavoritesTracksState = {
 	value: [],
 };
 
@@ -36,7 +36,11 @@ export const favoritesTracksSlice = createSlice({
 		setInitialFavorites: (state, action) => {
 			state.value = action.payload;
 		},
+		resetFavorites: (state) => {
+			state.value = [];
+		},
 	},
 });
 
-export const { changeFav, setInitialFavorites } = favoritesTracksSlice.actions;
+export const { changeFav, setInitialFavorites, resetFavorites } =
+	favoritesTracksSlice.actions;

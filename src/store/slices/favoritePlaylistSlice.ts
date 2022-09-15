@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { IPlaylistFav } from '../../shared/types';
 
-interface favoritesPlaylistState {
+interface FavoritesPlaylistState {
 	value: IPlaylistFav;
 }
-const initialState: favoritesPlaylistState = {
+const initialState: FavoritesPlaylistState = {
 	value: {} as IPlaylistFav,
 };
 
@@ -15,7 +15,11 @@ export const favoritesPlaylistSlice = createSlice({
 		setFavoritesPlaylist: (state, action) => {
 			state.value = action.payload;
 		},
+		resetFavoritePlaylist: (state) => {
+			state.value = {} as IPlaylistFav;
+		},
 	},
 });
 
-export const { setFavoritesPlaylist } = favoritesPlaylistSlice.actions;
+export const { setFavoritesPlaylist, resetFavoritePlaylist } =
+	favoritesPlaylistSlice.actions;
