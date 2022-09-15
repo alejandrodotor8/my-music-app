@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { SpotifyApi } from '../services/api-spotify';
+import { useAppDispatch, useAppSelector } from '../Hooks/reduxHooks';
+import { changeFav } from '../store/slices/favoritesTracksSlice';
 import MainContent from '../components/templates/Main-content/Main-content';
 import Loader from '../components/atoms/Loader/Loader';
 import Track from '../components/molecules/Track/Track';
@@ -13,6 +15,16 @@ function PlaylistTracks(): JSX.Element {
 	const [playlistInfo, setPlaylistInfo] = useState<IPlaylist>();
 	const [loading, setLoading] = useState(false);
 	const [token] = useState(localStorage.getItem('token'));
+
+	const dispatch = useAppDispatch();
+	const favPlaylistID = useAppSelector(
+		(state) => state.favoritePlaylist.value.id
+	);
+	const favPlaylist = useAppSelector((state) => state.favoritesTracks.value);
+
+	const handleClick = (track: ITrack) => {
+		dispatch(changeFav({ track, token, favPlaylistID }));
+	};
 
 	useEffect(() => {
 		if (token && playlistId) {
@@ -67,9 +79,12 @@ function PlaylistTracks(): JSX.Element {
 								{playlistTracks.map((track, index) => (
 									<Track
 										key={track.id}
+										position={index + 1}
+										handleClick={() => handleClick(track)}
 										track={track}
-										index={index + 1}
-										token={token}
+										isFav={favPlaylist.some(
+											(item) => item.id === track.id
+										)}
 									/>
 								))}
 							</ul>
