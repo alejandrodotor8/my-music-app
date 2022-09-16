@@ -5,7 +5,7 @@ type Props = {
 	handleClick?: () => void;
 };
 
-export default function Button({ handleClick, isFav }: Props) {
+export default function ButtonFav({ handleClick, isFav }: Props) {
 	return (
 		<button className="button-fav" onClick={handleClick}>
 			<svg xmlns="http://www.w3.org/2000/svg">

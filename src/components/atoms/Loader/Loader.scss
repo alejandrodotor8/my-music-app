@@ -1,11 +1,9 @@
-@import "../../../styles/variables.scss";
+@import "../../../styles/variables.scss", "../../../styles/mixins.scss";
 
 .loader {
 	width: 100%;
 	height: calc(100vh - 135px);
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	@include flex();
 	span {
 		width: 48px;
 		height: 48px;

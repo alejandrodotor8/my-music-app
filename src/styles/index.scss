@@ -82,3 +82,7 @@ li {
 		grid-template-columns: 1fr 1fr;
 	}
 }
+
+.no-scroll {
+	overflow: hidden;
+}

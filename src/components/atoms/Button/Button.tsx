@@ -7,8 +7,9 @@ function Button({
 	to,
 	type = 'primary',
 	handleClick,
+	size,
 }: IButton): JSX.Element {
-	const classes = `button button--${type}`;
+	const classes = `button button--${type} ${size ? 'button--' + size : ''}`;
 	if (element == 'link') {
 		return (
 			<a className={classes} href={to}>

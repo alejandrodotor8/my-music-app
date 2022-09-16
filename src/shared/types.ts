@@ -6,12 +6,14 @@ export interface IPropsChildren {
 
 type Element = 'link' | 'button';
 type Type = 'primary' | 'secondary';
+type Size = 'big' | 'small';
 export interface IButton {
 	label: string;
 	element: Element;
 	type?: Type;
 	to?: string;
 	handleClick?: () => void;
+	size?: Size;
 }
 
 export interface IUser {
