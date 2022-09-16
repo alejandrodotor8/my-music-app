@@ -1,0 +1,47 @@
+@import "../../../styles/variables.scss", "../../../styles/mixins.scss";
+
+.burger {
+	@include flex($direction: column, $justify: space-around);
+	width: 25px;
+	height: 25px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+	z-index: $z-top;
+
+	&:focus {
+		outline: none;
+	}
+
+	div {
+		width: 100%;
+		height: 3px;
+		background-color: $white;
+		border-radius: 10px;
+		transition: all 0.3s linear;
+		position: relative;
+		transform-origin: 1px;
+	}
+	&.burger--open {
+		width: 27px;
+		height: 26px;
+		div {
+			&:first-child {
+				transform: rotate(45deg);
+			}
+
+			&:nth-child(2) {
+				opacity: 0;
+				transform: translateX(20px);
+			}
+
+			&:nth-child(3) {
+				transform: rotate(-45deg);
+			}
+		}
+	}
+	@include from($medium) {
+		display: none;
+	}
+}

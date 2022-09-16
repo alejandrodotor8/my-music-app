@@ -21,3 +21,8 @@
 		border: 1px solid $black;
 	}
 }
+
+.button.button--small {
+	padding: 5px 12px;
+	font-size: $font-text-small;
+}
