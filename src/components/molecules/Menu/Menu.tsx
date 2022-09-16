@@ -40,6 +40,7 @@ export default function Menu({ isOpen, user, setOpen }: Props) {
 				label="Favorites"
 				handleClick={handleClickNavLink}
 			/>
+			<NavLink to="search" label="Search" handleClick={handleClickNavLink} />
 			<Button
 				size="small"
 				element="button"
