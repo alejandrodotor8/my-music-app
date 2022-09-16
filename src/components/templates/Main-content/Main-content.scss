@@ -5,14 +5,10 @@
 	width: 90%;
 	margin: 20px 5%;
 	min-height: calc(100vh - 135px);
-	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	justify-content: start;
-	align-items: center;
-
+	@include flex($direction: column, $justify: start);
 	&__title {
-		font-size: 2rem;
+		font-size: $font-subtitle;
+		text-align: center;
 	}
 	&__description {
 		margin-top: 5px;

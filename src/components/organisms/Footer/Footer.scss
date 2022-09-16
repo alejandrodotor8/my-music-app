@@ -1,12 +1,10 @@
-@import "../../../styles/variables.scss";
+@import "../../../styles/variables.scss", "../../../styles/mixins.scss";
 
 .footer {
 	width: 100%;
 	height: 45px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	@include flex();
 	p {
-		font-size: 1.3rem;
+		font-size: $font-text-small;
 	}
 }
