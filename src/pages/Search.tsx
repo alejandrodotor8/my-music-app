@@ -9,7 +9,7 @@ export default function Search() {
 		console.log(searchValue);
 		setSearchValue('');
 	};
-	const handleChange = (value: string) => {
+	const handleSearchChange = (value: string) => {
 		setSearchValue(value);
 	};
 	return (
@@ -23,7 +23,7 @@ export default function Search() {
 						value={searchValue}
 						type="text"
 						placeholder="Type for search a song"
-						handleChange={handleChange}
+						handleChange={handleSearchChange}
 						disabled={searchValue.length <= 0}
 					>
 						<button
