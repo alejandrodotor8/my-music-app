@@ -1,21 +1,23 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
+import SignIn from '../pages/SignIn';
+import Loader from '../components/atoms/Loader/Loader';
 
 const Home = lazy(() => import('../pages/Home'));
 const PlaylistTracks = lazy(() => import('../pages/PlaylistTracks'));
 const Favorites = lazy(() => import('../pages/Profile'));
-const SigIn = lazy(() => import('../pages/SignIn'));
+const Search = lazy(() => import('../pages/Search'));
 
 export default function Router() {
 	return (
 		<Routes>
 			<Route path="*" element={<h1>404</h1>} />
-			<Route path="/signin" element={<SigIn />} />
+			<Route path="/signin" element={<SignIn />} />
 			<Route
 				path="/"
 				element={
-					<Suspense fallback={<>...</>}>
+					<Suspense fallback={<Loader />}>
 						<ProtectedRoute>
 							<Home />
 						</ProtectedRoute>
@@ -26,7 +28,7 @@ export default function Router() {
 			<Route
 				path="/playlist/:playlistId"
 				element={
-					<Suspense fallback={<>...</>}>
+					<Suspense fallback={<Loader />}>
 						<ProtectedRoute>
 							<PlaylistTracks />
 						</ProtectedRoute>
@@ -36,9 +38,19 @@ export default function Router() {
 			<Route
 				path="/profile/:userId"
 				element={
-					<Suspense fallback={<>...</>}>
+					<Suspense fallback={<Loader />}>
 						<ProtectedRoute>
 							<Favorites />
+						</ProtectedRoute>
+					</Suspense>
+				}
+			/>
+			<Route
+				path="/search"
+				element={
+					<Suspense fallback={<Loader />}>
+						<ProtectedRoute>
+							<Search />
 						</ProtectedRoute>
 					</Suspense>
 				}

@@ -1,0 +1,61 @@
+@import "../../../styles/variables.scss", "../../../styles//mixins.scss";
+
+// gradient animation
+@keyframes gradient {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: 100% 0;
+	}
+}
+
+.container-input {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	max-width: 400px;
+	margin: 20px auto;
+	border-radius: 5px;
+	border: 2px solid;
+	border-color: $purple-state--active;
+	padding: 1.4rem 2rem 1.6rem;
+	background: $coconut-light;
+	&--disabled {
+		border-color: $purple-state--inactive;
+	}
+	&:after {
+		content: "";
+		position: absolute;
+		left: 0px;
+		right: 0px;
+		bottom: 0px;
+		z-index: 999;
+		height: 3px;
+		border-bottom-left-radius: 2px;
+		border-bottom-right-radius: 2px;
+		background-position: 0% 0%;
+		background: linear-gradient(
+			to right,
+			$vite-purple,
+			$vite-blue,
+			$vite-yellow,
+			$vite-blue,
+			$vite-purple,
+			$vite-blue
+		);
+		background-size: 500% auto;
+		animation: gradient 3s linear infinite;
+	}
+	&__input {
+		flex-grow: 1;
+		color: $black;
+		font-size: $font-text-big;
+		line-height: 2.4rem;
+		vertical-align: middle;
+		&::-webkit-input-placeholder {
+			color: $purple-state--active;
+		}
+	}
+}

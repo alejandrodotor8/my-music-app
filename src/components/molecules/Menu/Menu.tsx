@@ -20,6 +20,8 @@ export default function Menu({ isOpen, user, setOpen }: Props) {
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
 
+	const body = document.getElementById('body');
+
 	const handleClickLogout = (): void => {
 		logout();
 		dispatch(resetUser());
@@ -29,6 +31,7 @@ export default function Menu({ isOpen, user, setOpen }: Props) {
 	};
 
 	const handleClickNavLink = () => {
+		if (body) body.classList.toggle('no-scroll');
 		setOpen(!isOpen);
 	};
 
@@ -40,6 +43,7 @@ export default function Menu({ isOpen, user, setOpen }: Props) {
 				label="Favorites"
 				handleClick={handleClickNavLink}
 			/>
+			<NavLink to="search" label="Search" handleClick={handleClickNavLink} />
 			<Button
 				size="small"
 				element="button"

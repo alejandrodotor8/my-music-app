@@ -101,6 +101,12 @@ class SpotifyApi {
 		});
 		return res;
 	}
+	async searchTrackItem(searchValue: string) {
+		const res = await this.api('search', {
+			params: { q: searchValue, type: 'track', limit: 20 },
+		});
+		return res;
+	}
 }
 
 export { SpotifyApi };

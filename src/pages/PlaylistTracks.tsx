@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { SpotifyApi } from '../services/api-spotify';
+import { useAuth } from '../Hooks/useAuth';
 import { useAppDispatch, useAppSelector } from '../Hooks/reduxHooks';
-import { changeFav } from '../store/slices/favoritesTracksSlice';
+import { addTrack, removeTrack } from '../store/slices/favoritesTracksSlice';
+import changeFavorite from '../services/change-favorite';
 import MainContent from '../components/templates/Main-content/Main-content';
 import Loader from '../components/atoms/Loader/Loader';
 import Track from '../components/molecules/Track/Track';
@@ -14,7 +15,7 @@ function PlaylistTracks(): JSX.Element {
 	const [playlistTracks, setPlaylistTracks] = useState<ITrack[]>([]);
 	const [playlistInfo, setPlaylistInfo] = useState<IPlaylist>();
 	const [loading, setLoading] = useState(false);
-	const [token] = useState(localStorage.getItem('token'));
+	const { api } = useAuth();
 
 	const dispatch = useAppDispatch();
 	const favPlaylistID = useAppSelector(
@@ -22,15 +23,22 @@ function PlaylistTracks(): JSX.Element {
 	);
 	const favPlaylist = useAppSelector((state) => state.favoritesTracks.value);
 
-	const handleClick = (track: ITrack) => {
-		dispatch(changeFav({ track, token, favPlaylistID }));
+	const handleClickChangeFav = (track: ITrack) => {
+		changeFavorite(
+			favPlaylist,
+			track,
+			favPlaylistID,
+			api,
+			dispatch,
+			addTrack,
+			removeTrack
+		);
 	};
 
 	useEffect(() => {
-		if (token && playlistId) {
+		if (playlistId && api) {
 			try {
 				setLoading(true);
-				const api = new SpotifyApi(token);
 
 				api.getPlaylist(playlistId).then((res) => {
 					setPlaylistInfo({
@@ -74,13 +82,13 @@ function PlaylistTracks(): JSX.Element {
 						title={playlistInfo.name + 'songs'}
 						description={playlistInfo.description}
 					>
-						{playlistTracks && token && (
+						{playlistTracks && (
 							<ul className="tracks">
 								{playlistTracks.map((track, index) => (
 									<Track
 										key={track.id}
 										position={index + 1}
-										handleClick={() => handleClick(track)}
+										handleClick={() => handleClickChangeFav(track)}
 										track={track}
 										isFav={favPlaylist.some(
 											(item) => item.id === track.id

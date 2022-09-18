@@ -22,6 +22,17 @@ body {
 	font-size: $font-text-base;
 	color: $black;
 }
+input {
+	border-style: none;
+	background: transparent;
+	outline: none;
+}
+button {
+	padding: 0;
+	background: none;
+	border: none;
+	outline: none;
+}
 a {
 	font-weight: 500;
 	color: $purple-dark;
@@ -85,4 +96,29 @@ li {
 
 .no-scroll {
 	overflow: hidden;
+}
+
+/* SEARCH PAGE*/
+.search {
+	width: 100%;
+}
+.container-input__button {
+	color: $purple-state--active;
+	font-size: $font-subtitle;
+	line-height: 2.4rem;
+	vertical-align: middle;
+	transition: color 0.25s;
+	&:hover {
+		color: $purple-state--inactive;
+	}
+	&:disabled {
+		color: $purple-state--inactive;
+	}
+}
+
+.no-results-found {
+	text-align: center;
+	padding: 40px 0;
+	font-size: $font-text-base;
+	color: $purple-state--inactive;
 }

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { SpotifyApi } from '../services/api-spotify';
 import { useAppSelector, useAppDispatch } from '../Hooks/reduxHooks';
 import { setFavoritesPlaylist } from '../store/slices/favoritePlaylistSlice';
 import { setInitialFavorites } from '../store/slices/favoritesTracksSlice';
+import { useAuth } from '../Hooks/useAuth';
 import MainContent from '../components/templates/Main-content/Main-content';
 import Playlist from '../components/molecules/Playlist/Playlist';
 import Loader from '../components/atoms/Loader/Loader';
@@ -12,7 +12,7 @@ export default function Home(): JSX.Element {
 	const [loading, setLoading] = useState(false);
 	const [playlists, setPlaylists] = useState<IPlaylist[]>([]);
 	const playlistsState = useAppSelector((state) => state.playlists.value);
-
+	const { api } = useAuth();
 	const user = useAppSelector((state) => state.user.value);
 
 	const dispatch = useAppDispatch();
@@ -20,17 +20,13 @@ export default function Home(): JSX.Element {
 	//Trae las playlist iniciales
 	useEffect(() => {
 		console.log('Render Home');
-		const token = localStorage.getItem('token');
-		if (token && playlistsState.length > 0) {
-			try {
-				setLoading(true);
-				const api = new SpotifyApi(token);
+		if (playlistsState.length > 0) {
+			setLoading(true);
 
-				const promises = playlistsState.map((item) =>
-					api.getPlaylist(item)
-				);
+			const promises = playlistsState.map((item) => api.getPlaylist(item));
 
-				Promise.all(promises).then((values) => {
+			Promise.all(promises)
+				.then((values) => {
 					const _playlists: IPlaylist[] = [];
 					values.forEach((value: any) => {
 						_playlists.push({
@@ -43,21 +39,16 @@ export default function Home(): JSX.Element {
 					});
 					setPlaylists(_playlists);
 					setLoading(false);
-				});
-			} catch (error) {
-				console.log(error);
-			}
+				})
+				.catch((error) => console.log(error));
 		}
 	}, []);
 
 	//Trae la playlist de favoritos
 	useEffect(() => {
-		const token = localStorage.getItem('token');
-
-		if (token && user.id) {
-			try {
-				const api = new SpotifyApi(token);
-				api.getFavoritesPlaylist(user.id, 50).then((res: IPlaylistFav) => {
+		if (user.id && api) {
+			api.getFavoritesPlaylist(user.id, 50)
+				.then((res: IPlaylistFav) => {
 					dispatch(setFavoritesPlaylist(res));
 					if (res.id) {
 						api.getPlaylistTracks(res.id).then((res) => {
@@ -76,10 +67,8 @@ export default function Home(): JSX.Element {
 							dispatch(setInitialFavorites(tracks));
 						});
 					}
-				});
-			} catch (error) {
-				console.log(error);
-			}
+				})
+				.catch((error) => console.log(error));
 		}
 	}, [user]);
 

@@ -17,9 +17,7 @@ function SignIn() {
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
 
-	const setUserLogin = (token: string) => {
-		const api = new SpotifyApi(token);
-
+	const setUserLogin = (api: SpotifyApi) => {
 		api.getCurrentUser().then((res) => {
 			dispatch(
 				setUser({
@@ -41,15 +39,14 @@ function SignIn() {
 			const access_token = queryParams.get('access_token');
 
 			if (access_token) {
-				login(access_token);
-				setUserLogin(access_token);
+				const api = login(access_token);
+				setUserLogin(api);
 				navigate('/');
 			}
 			//if token exists in LS
 		} else if (token_LS) {
-			login(token_LS);
-			setUserLogin(token_LS);
-
+			const api = login(token_LS);
+			setUserLogin(api);
 			navigate('/');
 		}
 	}, []);
