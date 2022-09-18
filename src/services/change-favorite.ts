@@ -1,5 +1,5 @@
 import type { ITrack } from '../shared/types';
-import { SpotifyApi } from '../services/api-spotify';
+import { SpotifyApi } from './api-spotify';
 
 export default function changeFavorite(
 	favPlaylist: ITrack[],

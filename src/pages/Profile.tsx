@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../Hooks/reduxHooks';
 import { addTrack, removeTrack } from '../store/slices/favoritesTracksSlice';
 import { useAuth } from '../Hooks/useAuth';
-import changeFavorite from '../services/find-favorite';
+import changeFavorite from '../services/change-favorite';
 import MainContent from '../components/templates/Main-content/Main-content';
 import Track from '../components/molecules/Track/Track';
 import type { ITrack } from '../shared/types';

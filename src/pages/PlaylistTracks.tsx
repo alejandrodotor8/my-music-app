@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useAuth } from '../Hooks/useAuth';
 import { useAppDispatch, useAppSelector } from '../Hooks/reduxHooks';
 import { addTrack, removeTrack } from '../store/slices/favoritesTracksSlice';
-import changeFavorite from '../services/find-favorite';
+import changeFavorite from '../services/change-favorite';
 import MainContent from '../components/templates/Main-content/Main-content';
 import Loader from '../components/atoms/Loader/Loader';
 import Track from '../components/molecules/Track/Track';
