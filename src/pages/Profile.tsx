@@ -8,7 +8,6 @@ import Track from '../components/molecules/Track/Track';
 import type { ITrack } from '../shared/types';
 
 export default function Profile() {
-	const [token] = useState(localStorage.getItem('token'));
 	const { api } = useAuth();
 	const dispatch = useAppDispatch();
 
@@ -22,7 +21,7 @@ export default function Profile() {
 	);
 	const favPlaylist = useAppSelector((state) => state.favoritesTracks.value);
 
-	const handleClickFav = (track: ITrack) => {
+	const handleClickChangeFav = (track: ITrack) => {
 		changeFavorite(
 			favPlaylist,
 			track,
@@ -39,14 +38,14 @@ export default function Profile() {
 			title={'Welcome back ' + user.name}
 			description="This are your favorites global songs"
 		>
-			{favoritesTracks && token && (
+			{favoritesTracks && (
 				<ul className="tracks">
 					{favoritesTracks.map((track, index) => (
 						<Track
 							key={track.id}
 							position={index + 1}
 							track={track}
-							handleClick={() => handleClickFav(track)}
+							handleClick={() => handleClickChangeFav(track)}
 							isFav={favPlaylist.some((item) => item.id === track.id)}
 						/>
 					))}

@@ -20,8 +20,7 @@ export default function Home(): JSX.Element {
 	//Trae las playlist iniciales
 	useEffect(() => {
 		console.log('Render Home');
-		const token = localStorage.getItem('token');
-		if (token && playlistsState.length > 0) {
+		if (playlistsState.length > 0) {
 			setLoading(true);
 
 			const promises = playlistsState.map((item) => api.getPlaylist(item));
@@ -47,9 +46,7 @@ export default function Home(): JSX.Element {
 
 	//Trae la playlist de favoritos
 	useEffect(() => {
-		const token = localStorage.getItem('token');
-
-		if (token && user.id && api) {
+		if (user.id && api) {
 			api.getFavoritesPlaylist(user.id, 50)
 				.then((res: IPlaylistFav) => {
 					dispatch(setFavoritesPlaylist(res));

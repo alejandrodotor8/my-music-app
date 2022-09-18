@@ -15,7 +15,6 @@ function PlaylistTracks(): JSX.Element {
 	const [playlistTracks, setPlaylistTracks] = useState<ITrack[]>([]);
 	const [playlistInfo, setPlaylistInfo] = useState<IPlaylist>();
 	const [loading, setLoading] = useState(false);
-	const [token] = useState(localStorage.getItem('token'));
 	const { api } = useAuth();
 
 	const dispatch = useAppDispatch();
@@ -24,7 +23,7 @@ function PlaylistTracks(): JSX.Element {
 	);
 	const favPlaylist = useAppSelector((state) => state.favoritesTracks.value);
 
-	const handleClick = (track: ITrack) => {
+	const handleClickChangeFav = (track: ITrack) => {
 		changeFavorite(
 			favPlaylist,
 			track,
@@ -37,7 +36,7 @@ function PlaylistTracks(): JSX.Element {
 	};
 
 	useEffect(() => {
-		if (token && playlistId && api) {
+		if (playlistId && api) {
 			try {
 				setLoading(true);
 
@@ -83,13 +82,13 @@ function PlaylistTracks(): JSX.Element {
 						title={playlistInfo.name + 'songs'}
 						description={playlistInfo.description}
 					>
-						{playlistTracks && token && (
+						{playlistTracks && (
 							<ul className="tracks">
 								{playlistTracks.map((track, index) => (
 									<Track
 										key={track.id}
 										position={index + 1}
-										handleClick={() => handleClick(track)}
+										handleClick={() => handleClickChangeFav(track)}
 										track={track}
 										isFav={favPlaylist.some(
 											(item) => item.id === track.id

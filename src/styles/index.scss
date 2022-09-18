@@ -115,3 +115,10 @@ li {
 		color: $purple-state--inactive;
 	}
 }
+
+.no-results-found {
+	text-align: center;
+	padding: 40px 0;
+	font-size: $font-text-base;
+	color: $purple-state--inactive;
+}
