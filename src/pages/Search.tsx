@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import MainContent from '../components/templates/Main-content/Main-content';
+import { useAuth } from '../Hooks/useAuth';
 import Input from '../components/atoms/Input/Input';
 
 export default function Search() {
 	const [searchValue, setSearchValue] = useState('');
+	const { api } = useAuth();
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 		console.log(searchValue);
+		if (api) api.getCurrentUser().then((res) => console.log(res));
 		setSearchValue('');
 	};
 	const handleSearchChange = (value: string) => {
