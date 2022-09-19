@@ -31,7 +31,7 @@ export default function Input({
 				type={type}
 				placeholder={placeholder}
 			></input>
-			{children && children}
+			{children}
 		</div>
 	);
 }

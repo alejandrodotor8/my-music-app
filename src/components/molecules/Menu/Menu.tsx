@@ -31,8 +31,13 @@ export default function Menu({ isOpen, user, setOpen }: Props) {
 	};
 
 	const handleClickNavLink = () => {
-		if (body) body.classList.toggle('no-scroll');
-		setOpen(!isOpen);
+		if (body) {
+			const width = body.offsetWidth;
+			if (width < 768) {
+				body.classList.toggle('no-scroll');
+				setOpen(!isOpen);
+			}
+		}
 	};
 
 	return (
