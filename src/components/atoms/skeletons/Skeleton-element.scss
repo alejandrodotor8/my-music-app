@@ -1,0 +1,36 @@
+//Basic styles
+@import "../../../styles/variables.scss", "../../../styles/mixins.scss";
+.skeleton {
+	background-color: $purple-skeleton;
+	border-radius: 4px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+
+	&--title {
+		width: 65%;
+		height: 16px;
+	}
+	&--text {
+		width: 100%;
+		height: 14px;
+	}
+	&--thumbnail-big {
+		width: 100px;
+		height: 100px;
+	}
+	&--thumbnail {
+		width: 40px;
+		height: 40px;
+	}
+	&--thumbnail-mini {
+		width: 25px;
+		height: 20px;
+	}
+}
+
+.skeleton-wrapper {
+	position: relative;
+	margin: 10px;
+	overflow: hidden;
+	border-radius: 10px;
+}
