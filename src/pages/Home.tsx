@@ -5,7 +5,7 @@ import { setInitialFavorites } from '../store/slices/favoritesTracksSlice';
 import { useAuth } from '../Hooks/useAuth';
 import MainContent from '../components/templates/Main-content/Main-content';
 import Playlist from '../components/molecules/Playlist/Playlist';
-import Loader from '../components/atoms/Loader/Loader';
+import SkeletonPlaylist from '../components/molecules/Skeletons/Skeleton-playlist/Skeleton-playlist';
 import type { IPlaylist, IPlaylistFav, ITrack } from '../shared/types';
 
 export default function Home(): JSX.Element {
@@ -38,9 +38,13 @@ export default function Home(): JSX.Element {
 						});
 					});
 					setPlaylists(_playlists);
-					setLoading(false);
 				})
-				.catch((error) => console.log(error));
+				.catch((error) => console.log(error))
+				.finally(() => {
+					setTimeout(() => {
+						setLoading(false);
+					}, 200);
+				});
 		}
 	}, []);
 
@@ -72,29 +76,31 @@ export default function Home(): JSX.Element {
 		}
 	}, [user]);
 
-	if (loading) {
-		return <Loader />;
-	} else {
-		return (
-			<MainContent
-				title="Best Spotify playlists!"
-				description="choose one and add the best tracks to you favorites playlist"
-			>
-				{playlists && (
-					<ul className="playlist">
-						{playlists.map((item) => (
-							<li className="playlist__item" key={item.id}>
-								<Playlist
-									id={item.id}
-									name={item.name}
-									image={item.image}
-									followers={item.followers}
-								/>
-							</li>
-						))}
-					</ul>
-				)}
-			</MainContent>
-		);
-	}
+	return (
+		<MainContent
+			title="Best Spotify playlists!"
+			description="choose one and add the best tracks to you favorites playlist"
+		>
+			{loading ? (
+				<ul className="playlist">
+					{[1, 2, 3, 4, 5, 6].map((item) => (
+						<SkeletonPlaylist key={item} />
+					))}
+				</ul>
+			) : (
+				<ul className="playlist">
+					{playlists.map((item) => (
+						<li className="playlist__item" key={item.id}>
+							<Playlist
+								id={item.id}
+								name={item.name}
+								image={item.image}
+								followers={item.followers}
+							/>
+						</li>
+					))}
+				</ul>
+			)}
+		</MainContent>
+	);
 }

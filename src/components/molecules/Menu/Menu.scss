@@ -11,7 +11,7 @@
 	left: 0;
 	transition: transform 0.3s ease-in-out;
 	transform: translateX(100vw);
-	z-index: $z-medium;
+	z-index: $z-up;
 
 	&__profile {
 		&-picture {

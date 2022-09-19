@@ -6,6 +6,7 @@ import { addTrack, removeTrack } from '../store/slices/favoritesTracksSlice';
 import changeFavorite from '../services/change-favorite';
 import MainContent from '../components/templates/Main-content/Main-content';
 import Loader from '../components/atoms/Loader/Loader';
+import SkeletonTrack from '../components/molecules/Skeletons/Skeleton-track/Skeleton-track';
 import Track from '../components/molecules/Track/Track';
 
 import type { ITrack, IPlaylist } from '../shared/types';
@@ -37,21 +38,19 @@ function PlaylistTracks(): JSX.Element {
 
 	useEffect(() => {
 		if (playlistId && api) {
-			try {
-				setLoading(true);
+			setLoading(true);
+			const promises = [
+				api.getPlaylist(playlistId),
+				api.getPlaylistTracks(playlistId),
+			];
 
-				api.getPlaylist(playlistId).then((res) => {
-					setPlaylistInfo({
-						id: res.data.id,
-						name: res.data.name,
-						image: res.data.images[0]?.url,
-						description: res.data.description,
-						followers: res.data.followers.total,
-					});
-				});
-				api.getPlaylistTracks(playlistId).then((res) => {
+			Promise.all(promises)
+				.then((values) => {
+					const resPlaylist = values[0].data;
+					const resPlaylistTracks = values[1].data;
+
 					const tracks: ITrack[] = [];
-					res.data.items.forEach((item: any) => {
+					resPlaylistTracks.items.forEach((item: any) => {
 						tracks.push({
 							id: item.track.id,
 							name: item.track.name,
@@ -60,46 +59,54 @@ function PlaylistTracks(): JSX.Element {
 							audio: item.track.preview_url,
 						});
 					});
+
+					setPlaylistInfo({
+						id: resPlaylist.id,
+						name: resPlaylist.name,
+						image: resPlaylist.images[0]?.url,
+						description: resPlaylist.description,
+						followers: resPlaylist.followers.total,
+					});
+
 					setPlaylistTracks(tracks);
+				})
+				.catch((error) => console.log(error))
+				.finally(() => {
+					setTimeout(() => {
+						setLoading(false);
+					}, 200);
 				});
-			} catch (error) {
-				console.log(error);
-			} finally {
-				setTimeout(() => {
-					setLoading(false);
-				}, 200);
-			}
 		}
 	}, []);
 
-	if (loading) {
-		return <Loader />;
+	if (!loading && playlistInfo) {
+		return (
+			<MainContent
+				title={playlistInfo.name + 'songs'}
+				description={playlistInfo.description}
+			>
+				<ul className="tracks">
+					{playlistTracks.map((track, index) => (
+						<Track
+							key={track.id}
+							position={index + 1}
+							handleClick={() => handleClickChangeFav(track)}
+							track={track}
+							isFav={favPlaylist.some((item) => item.id === track.id)}
+						/>
+					))}
+				</ul>
+			</MainContent>
+		);
 	} else {
 		return (
-			<>
-				{playlistInfo && (
-					<MainContent
-						title={playlistInfo.name + 'songs'}
-						description={playlistInfo.description}
-					>
-						{playlistTracks && (
-							<ul className="tracks">
-								{playlistTracks.map((track, index) => (
-									<Track
-										key={track.id}
-										position={index + 1}
-										handleClick={() => handleClickChangeFav(track)}
-										track={track}
-										isFav={favPlaylist.some(
-											(item) => item.id === track.id
-										)}
-									/>
-								))}
-							</ul>
-						)}
-					</MainContent>
-				)}
-			</>
+			<MainContent title="Playlist" description="the best songs">
+				<ul className="tracks">
+					{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
+						<SkeletonTrack key={item} />
+					))}
+				</ul>
+			</MainContent>
 		);
 	}
 }
