@@ -1,0 +1,17 @@
+@import "../../../../styles/variables.scss", "../../../../styles/mixins.scss";
+
+.skeleton-track {
+	width: 280px;
+	height: 50px;
+	background-color: $purple-skeleton-light;
+	@include flex();
+	border-radius: 5px;
+	&__info {
+		width: 200px;
+		padding: 0 15px;
+	}
+	.thumbnail-mini {
+		width: 20px;
+		margin-left: 10px;
+	}
+}

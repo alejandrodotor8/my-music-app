@@ -37,12 +37,14 @@ export default function Home(): JSX.Element {
 							description: value.data.description,
 						});
 					});
-					setTimeout(() => {
-						setPlaylists(_playlists);
-						setLoading(false);
-					}, 500);
+					setPlaylists(_playlists);
 				})
-				.catch((error) => console.log(error));
+				.catch((error) => console.log(error))
+				.finally(() => {
+					setTimeout(() => {
+						setLoading(false);
+					}, 200);
+				});
 		}
 	}, []);
 
