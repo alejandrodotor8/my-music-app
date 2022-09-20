@@ -4,10 +4,20 @@ import Footer from './components/organisms/Footer/Footer';
 import Router from './router/Router';
 import './styles/index.scss';
 
+import { useAppSelector } from './Hooks/reduxHooks';
+import { useAuth } from './Hooks/useAuth';
+
 function App() {
+	const { isAuthenticated, logout } = useAuth();
+	const user = useAppSelector((state) => state.user.value);
+
 	return (
 		<BrowserRouter>
-			<Header />
+			<Header
+				user={user}
+				isAuthenticated={isAuthenticated}
+				logout={logout}
+			/>
 			<Router />
 			<Footer />
 		</BrowserRouter>
