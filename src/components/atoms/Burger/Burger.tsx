@@ -6,11 +6,9 @@ interface Props {
 }
 
 export default function Burger({ handleClickBurger, isOpen }: Props) {
+	const classes = `burger ${isOpen ? 'burger--open' : ''}`;
 	return (
-		<button
-			onClick={handleClickBurger}
-			className={`burger ${isOpen ? 'burger--open' : ''}`}
-		>
+		<button onClick={handleClickBurger} className={classes}>
 			<div></div>
 			<div></div>
 			<div></div>
