@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import Button from './Button';
 import type { IButton } from '../../../shared/types';
 
@@ -57,5 +57,11 @@ describe('<Button /> Button', () => {
 	});
 	test('Has correct label', () => {
 		component.getByText(mockProps.label);
+	});
+	test('Click in button', () => {
+		const element = component.getByText(mockProps.label);
+		fireEvent.click(element);
+
+		expect(mockProps.handleClick).toHaveBeenCalledTimes(1);
 	});
 });
