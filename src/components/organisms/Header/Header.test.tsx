@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import '@testing-library/jest-dom';
 import { fireEvent, render } from '@testing-library/react';
