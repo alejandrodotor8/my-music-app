@@ -9,7 +9,7 @@ type Type = 'primary' | 'secondary';
 type Size = 'big' | 'small';
 export interface IButton {
 	label: string;
-	element: Element;
+	element?: Element;
 	type?: Type;
 	to?: string;
 	handleClick?: () => void;
