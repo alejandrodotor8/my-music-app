@@ -41,9 +41,7 @@ export default function Home(): JSX.Element {
 				})
 				.catch((error) => console.log(error))
 				.finally(() => {
-					setTimeout(() => {
-						setLoading(false);
-					}, 200);
+					setLoading(false);
 				});
 		}
 	}, []);

@@ -48,10 +48,8 @@ export default function Search() {
 						audio: item.preview_url,
 					});
 				});
-				setTimeout(() => {
-					setSearchedTracks(_tracks);
-					setLoading(false);
-				}, 500);
+				setSearchedTracks(_tracks);
+				setLoading(false);
 			})
 			.catch((err) => console.log(err));
 		setSearchValue('');

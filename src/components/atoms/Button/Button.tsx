@@ -3,11 +3,11 @@ import './Button.scss';
 
 function Button({
 	label,
-	element,
-	to,
+	element = 'button',
 	type = 'primary',
-	handleClick,
 	size,
+	to,
+	handleClick,
 }: IButton): JSX.Element {
 	const classes = `button button--${type} ${size ? 'button--' + size : ''}`;
 	if (element == 'link') {

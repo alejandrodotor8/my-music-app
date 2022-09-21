@@ -1,6 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../Hooks/reduxHooks';
-import { useAuth } from '../../../Hooks/useAuth';
 import { IUser } from '../../../shared/types';
 import { resetUser } from '../../../store/slices/userSlice';
 import { resetFavoritePlaylist } from '../../../store/slices/favoritePlaylistSlice';
@@ -13,10 +12,10 @@ interface Props {
 	isOpen: boolean;
 	user: IUser;
 	setOpen: (isOpen: boolean) => void;
+	logout: () => void;
 }
 
-export default function Menu({ isOpen, user, setOpen }: Props) {
-	const { logout } = useAuth();
+export default function Menu({ isOpen, user, setOpen, logout }: Props) {
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
 
