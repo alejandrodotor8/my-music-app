@@ -72,8 +72,6 @@ function PlaylistTracks(): JSX.Element {
 				})
 				.catch((error) => console.log(error))
 				.finally(() => {
-					/* setTimeout(() => {
-					}, 200); */
 					setLoading(false);
 				});
 		}
