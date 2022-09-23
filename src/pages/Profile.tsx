@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../Hooks/reduxHooks';
 import { addTrack, removeTrack } from '../store/slices/favoritesTracksSlice';
 import { useAuth } from '../Hooks/useAuth';
