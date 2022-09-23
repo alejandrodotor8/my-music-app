@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import type { IPlaylistFav } from '../../shared/types';
+import type { IPlaylistFav } from '@/shared/types';
 
 interface FavoritesPlaylistState {
 	value: IPlaylistFav;

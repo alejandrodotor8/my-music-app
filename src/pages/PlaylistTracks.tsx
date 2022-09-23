@@ -5,7 +5,6 @@ import { useAppDispatch, useAppSelector } from '../Hooks/reduxHooks';
 import { addTrack, removeTrack } from '../store/slices/favoritesTracksSlice';
 import changeFavorite from '../services/change-favorite';
 import MainContent from '../components/templates/Main-content/Main-content';
-import Loader from '../components/atoms/Loader/Loader';
 import SkeletonTrack from '../components/molecules/Skeletons/Skeleton-track/Skeleton-track';
 import Track from '../components/molecules/Track/Track';
 

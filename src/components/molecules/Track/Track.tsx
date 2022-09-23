@@ -1,7 +1,7 @@
-import ButtonFav from '../../atoms/Button-fav/Button-fav';
-import AudioPlayer from '../../atoms/Audio-player/Audio-player';
+import ButtonFav from '@atoms/Button-fav/Button-fav';
+import AudioPlayer from '@atoms/Audio-player/Audio-player';
 
-import type { ITrack } from '../../../shared/types';
+import type { ITrack } from '@/shared/types';
 import './Track.scss';
 
 interface Props {

@@ -11,6 +11,7 @@ export default defineConfig({
 			'@molecules': path.resolve(__dirname, './src/components/molecules'),
 			'@organisms': path.resolve(__dirname, './src/components/organisms'),
 			'@slices': path.resolve(__dirname, './src/store/slices'),
+			'@styles': path.resolve(__dirname, './src/styles'),
 		},
 	},
 	plugins: [react()],

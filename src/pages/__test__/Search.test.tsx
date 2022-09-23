@@ -1,8 +1,8 @@
 import '@testing-library/jest-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { store } from '../../store/store';
+import { store } from '@/store/store';
 import { Provider } from 'react-redux';
-import { AuthContext } from '../../Hooks/useAuth';
+import { AuthContext } from '@/Hooks/useAuth';
 import { MockSpotifyApi } from '../__test__/mockDataSpotify';
 import Search from '../Search';
 

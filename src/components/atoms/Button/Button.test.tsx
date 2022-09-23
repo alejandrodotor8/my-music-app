@@ -1,12 +1,12 @@
 import '@testing-library/jest-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
 import Button from './Button';
-import type { IButton } from '../../../shared/types';
+import { IButton, EBtnElement, ESize, EType } from '@/shared/types';
 
 describe('<Button /> Link should', () => {
 	const mockProps: IButton = {
 		label: 'click',
-		element: 'link',
+		element: EBtnElement.LINK,
 		to: 'https://alejandrodotor.com',
 	};
 
@@ -19,7 +19,7 @@ describe('<Button /> Link should', () => {
 	});
 	test('Have classes', () => {
 		const element = screen.getByRole('link', { name: mockProps.label });
-		const classType = mockProps.type || 'primary';
+		const classType = mockProps.type || EType.PRIMARY;
 		expect(element).toHaveClass('button--' + classType);
 	});
 });
@@ -27,8 +27,8 @@ describe('<Button /> Link should', () => {
 describe('<Button /> Button should', () => {
 	const mockProps: IButton = {
 		label: 'click',
-		type: 'secondary',
-		size: 'small',
+		type: EType.SECONDARY,
+		size: ESize.SMALL,
 		handleClick: jest.fn(),
 	};
 
@@ -41,7 +41,7 @@ describe('<Button /> Button should', () => {
 	});
 	test('Have classes', () => {
 		const element = screen.getByRole('button', { name: mockProps.label });
-		const classType = mockProps.type || 'primary';
+		const classType = mockProps.type || EType.PRIMARY;
 		const classSize = mockProps.size || '';
 
 		expect(element).toHaveClass('button--' + classType);

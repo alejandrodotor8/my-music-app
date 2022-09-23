@@ -1,20 +1,19 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Burger from '../../atoms/Burger/Burger';
-import Menu from '../../molecules/Menu/Menu';
+import Burger from '@atoms/Burger/Burger';
+import Menu from '@molecules/Menu/Menu';
 
-import NavLink from '../../atoms/Nav-link/Nav-link';
+import NavLink from '@atoms/Nav-link/Nav-link';
 import logo from '/vite.svg';
 import './Header.scss';
-import type { IUser } from '../../../shared/types';
+import type { IUser } from '@/shared/types';
 
 interface Props {
 	user: IUser;
 	isAuthenticated: boolean;
-	logout: () => void;
 }
 
-function Header({ user, isAuthenticated, logout }: Props) {
+function Header({ user, isAuthenticated }: Props) {
 	const [open, setOpen] = useState(false);
 
 	const body = document.getElementById('body');

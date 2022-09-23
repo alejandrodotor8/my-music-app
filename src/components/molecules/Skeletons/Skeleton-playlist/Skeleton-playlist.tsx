@@ -1,5 +1,5 @@
-import SkeletonElement from '../../../atoms/skeletons/Skeleton-element';
-import SkeletonShimmer from '../../../atoms/skeletons/Skeleton-shimmer/Skeleton-shimmer';
+import SkeletonElement from '@atoms/skeletons/Skeleton-element';
+import SkeletonShimmer from '@atoms/skeletons/Skeleton-shimmer/Skeleton-shimmer';
 import './Skeleton-playlist.scss';
 
 export default function SkeletonPlaylist() {
