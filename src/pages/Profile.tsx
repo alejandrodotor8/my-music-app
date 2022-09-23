@@ -5,6 +5,7 @@ import { resetFavorites } from '../store/slices/favoritesTracksSlice';
 import { useAppSelector, useAppDispatch } from '../Hooks/reduxHooks';
 import { useAuth } from '../Hooks/useAuth';
 import Button from '../components/atoms/Button/Button';
+import { EBtnElement, EType, ESize } from '@/shared/types';
 
 export default function Profile() {
 	const navigate = useNavigate();
@@ -30,11 +31,11 @@ export default function Profile() {
 			<h4 className="profile__id">{'@' + user.id}</h4>
 
 			<Button
-				size="small"
-				element="button"
+				size={ESize.SMALL}
+				element={EBtnElement.BUTTON}
 				handleClick={handleClickLogout}
 				label="Log out"
-				type="secondary"
+				type={EType.SECONDARY}
 			/>
 		</div>
 	);

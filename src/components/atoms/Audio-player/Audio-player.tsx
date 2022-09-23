@@ -21,7 +21,11 @@ export default function Audio({ image, audioUrl }: Props) {
 			<img src={image} alt="album image" />
 			{audioUrl && (
 				<>
-					<audio ref={audio} src={audioUrl}></audio>
+					<audio
+						data-testid="player-audio"
+						ref={audio}
+						src={audioUrl}
+					></audio>
 					<button
 						className={`player__play-icon ${
 							isPlaying ? 'player__play-icon--pause' : ''

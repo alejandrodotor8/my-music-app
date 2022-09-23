@@ -9,7 +9,7 @@ interface IAuth {
 	api: SpotifyApi;
 }
 
-const AuthContext = createContext<IAuth>(null as any);
+export const AuthContext = createContext<IAuth>(null as any);
 
 export const AuthProvider = ({ children }: IPropsChildren) => {
 	const auth = useProviderAuth();

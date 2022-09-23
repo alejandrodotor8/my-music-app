@@ -4,16 +4,25 @@ export interface IPropsChildren {
 	children?: ReactNode;
 }
 
-type Element = 'link' | 'button';
-type Type = 'primary' | 'secondary';
-type Size = 'big' | 'small';
+export enum EBtnElement {
+	LINK = 'link',
+	BUTTON = 'button',
+}
+export enum EType {
+	PRIMARY = 'primary',
+	SECONDARY = 'secondary',
+}
+export enum ESize {
+	BIG = 'big',
+	SMALL = 'small',
+}
 export interface IButton {
 	label: string;
-	element?: Element;
-	type?: Type;
+	element?: EBtnElement;
+	type?: EType;
 	to?: string;
 	handleClick?: () => void;
-	size?: Size;
+	size?: ESize;
 }
 
 export interface IUser {

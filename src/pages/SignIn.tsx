@@ -4,6 +4,7 @@ import { useAuth } from '../Hooks/useAuth';
 import { setUser } from '../store/slices/userSlice';
 import { SpotifyApi } from '../services/api-spotify';
 import { useAppDispatch } from '../Hooks/reduxHooks';
+import { EBtnElement } from '@/shared/types';
 
 import Button from '../components/atoms/Button/Button';
 import img from '../assets/img/signinwelcome.png';
@@ -67,7 +68,11 @@ function SignIn() {
 			</section>
 			{!isAuthenticated && (
 				<div className="signin__btn">
-					<Button element="link" to={URL_AUTH} label="Sign in" />
+					<Button
+						element={EBtnElement.LINK}
+						to={URL_AUTH}
+						label="Sign in"
+					/>
 					<span>with Spotify</span>
 				</div>
 			)}

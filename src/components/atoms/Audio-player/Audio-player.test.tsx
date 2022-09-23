@@ -1,48 +1,49 @@
 import '@testing-library/jest-dom';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import AudioPlayer from './Audio-player';
 
-describe('<AudioPlayer /> No Audio', () => {
+describe('<AudioPlayer /> No Audio should:', () => {
 	const mockProps = {
 		image: 'https://i.scdn.co/image/ab67616d0000b2739b19c107109de740bad72df5',
 		audioUrl: '',
 	};
 
-	let component = render(<></>);
 	beforeEach(() => {
-		component = render(<AudioPlayer {...mockProps} />);
+		render(<AudioPlayer {...mockProps} />);
 	});
 
-	test('Has image', () => {
-		expect(component.container.querySelector('img')).toBeInTheDocument();
+	test('Render image', () => {
+		expect(screen.getByRole('img')).toBeInTheDocument();
 	});
-	test('Has no Audio', () => {
-		expect(
-			component.container.querySelector('audio')
-		).not.toBeInTheDocument();
-		expect(
-			component.container.querySelector('button')
-		).not.toBeInTheDocument();
+	test('Not render Audio and Button', () => {
+		expect(screen.queryByTestId('player-audio')).not.toBeInTheDocument();
+		expect(screen.queryByRole('button')).not.toBeInTheDocument();
 	});
 });
 
-describe('<AudioPlayer /> with Audio', () => {
+describe('<AudioPlayer /> with Audio should', () => {
 	const mockProps = {
 		image: 'https://i.scdn.co/image/ab67616d0000b2739b19c107109de740bad72df5',
 		audioUrl:
 			'https://p.scdn.co/mp3-preview/0a51a10b22c93ee8b214fe4a87a0b37fe98687f6?cid=8c87272c262b4a81b19e595464e39c6c',
 	};
 
-	let component = render(<></>);
 	beforeEach(() => {
-		component = render(<AudioPlayer {...mockProps} />);
+		render(<AudioPlayer {...mockProps} />);
 	});
-	test('Has Audio', () => {
-		expect(component.container.querySelector('audio')).toBeInTheDocument();
-		expect(component.container.querySelector('button')).toBeInTheDocument();
+	test(' Render Audio and Button', () => {
+		expect(screen.queryByTestId('player-audio')).toBeInTheDocument();
+		expect(screen.getByRole('button')).toBeInTheDocument();
 	});
-	test('Audio is paused at start', () => {
-		const audio = component.container.querySelector('audio');
-		if (audio) expect(audio.paused).toBeTruthy();
+	test('Have audio paused at start', () => {
+		expect(
+			screen.queryByTestId<HTMLAudioElement>('player-audio')?.paused
+		).toBeTruthy();
+	});
+	test('Have audio src', () => {
+		expect(screen.queryByTestId('player-audio')).toHaveAttribute(
+			'src',
+			mockProps.audioUrl
+		);
 	});
 });

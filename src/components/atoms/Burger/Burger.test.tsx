@@ -1,44 +1,37 @@
 import '@testing-library/jest-dom';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import Burger from './Burger';
 
-describe('<Burger /> Closed', () => {
+describe('<Burger /> Closed should', () => {
 	const mockProps = {
 		handleClickBurger: jest.fn(),
 		isOpen: false,
 	};
 
-	let component = render(<></>);
 	beforeEach(() => {
-		component = render(<Burger {...mockProps} />);
+		render(<Burger {...mockProps} />);
 	});
 
-	test('Click burger btn', () => {
-		const button = component.container.querySelector('button');
-		if (button) fireEvent.click(button);
+	test('Can click burger btn', () => {
+		const button = screen.getByRole('button');
+		fireEvent.click(button);
 		expect(mockProps.handleClickBurger).toHaveBeenCalledTimes(1);
 	});
 
-	test('Has no burger--open class', () => {
-		expect(component.container.querySelector('button')).not.toHaveClass(
-			'burger--open'
-		);
+	test('Have no burger--open class', () => {
+		expect(screen.getByRole('button')).not.toHaveClass('burger--open');
 	});
 });
-describe('<Burger /> Open', () => {
+describe('<Burger /> Open should', () => {
 	const mockProps = {
 		handleClickBurger: jest.fn(),
 		isOpen: true,
 	};
-
-	let component = render(<></>);
 	beforeEach(() => {
-		component = render(<Burger {...mockProps} />);
+		render(<Burger {...mockProps} />);
 	});
 
-	test('Has burger--open class', () => {
-		expect(component.container.querySelector('button')).toHaveClass(
-			'burger--open'
-		);
+	test('Have burger--open class', () => {
+		expect(screen.getByRole('button')).toHaveClass('burger--open');
 	});
 });

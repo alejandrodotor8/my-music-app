@@ -7,5 +7,5 @@ interface Props {
 }
 
 export default function Menu({ isOpen, children }: Props) {
-	return <nav className={`menu ${isOpen ? 'menu-open' : ''}`}>{children}</nav>;
+	return <nav className={`menu ${isOpen && 'menu-open'}`}>{children}</nav>;
 }
