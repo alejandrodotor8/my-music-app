@@ -9,7 +9,7 @@ function Button({
 	to,
 	handleClick,
 }: IButton): JSX.Element {
-	const classes = `button button--${type} ${size ? 'button--' + size : ''}`;
+	const classes = `button button--${type} ${size && 'button--' + size}`;
 	return (
 		<>
 			{element == 'link' ? (
