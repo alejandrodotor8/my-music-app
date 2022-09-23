@@ -122,3 +122,72 @@ li {
 	font-size: $font-text-base;
 	color: $purple-state--inactive;
 }
+
+/* PROFILE */
+.profile {
+	width: 80%;
+	min-height: calc(100vh - 95px);
+	margin: 0 10%;
+	@include flex($direction: column);
+
+	&__picture {
+		position: relative;
+		img {
+			width: 200px;
+			height: 200px;
+			border-radius: 50%;
+		}
+	}
+	&__name {
+		font-size: $font-title;
+		margin-top: 30px;
+		@include from($s-medium) {
+			font-size: $font-title-big;
+		}
+	}
+	&__id {
+		font-size: $font-text-big;
+		font-weight: 400;
+		margin-top: 10px;
+		margin-bottom: 30px;
+		color: $purple-dark;
+		@include from($s-medium) {
+			font-size: $font-subtitle;
+		}
+	}
+}
+
+.spin {
+	width: 200px;
+	height: 200px;
+	border: 2px solid #fff;
+	border-radius: 50%;
+	display: inline-block;
+	position: absolute;
+	box-sizing: border-box;
+	animation: rotation 2s cubic-bezier(0.165, 0.84, 0.44, 1);
+	top: 0;
+	left: 0;
+}
+.spin::after {
+	content: "";
+	box-sizing: border-box;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 210px;
+	height: 210px;
+	border-radius: 50%;
+	border: 4px solid;
+	border-color: $purple-dark transparent;
+}
+
+@keyframes rotation {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(720deg);
+	}
+}

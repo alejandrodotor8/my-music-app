@@ -6,7 +6,8 @@ import Loader from '../components/atoms/Loader/Loader';
 
 const Home = lazy(() => import('../pages/Home'));
 const PlaylistTracks = lazy(() => import('../pages/PlaylistTracks'));
-const Favorites = lazy(() => import('../pages/Profile'));
+const Profile = lazy(() => import('../pages/Profile'));
+const Favorites = lazy(() => import('../pages/Favorites'));
 const Search = lazy(() => import('../pages/Search'));
 
 export default function Router() {
@@ -37,6 +38,16 @@ export default function Router() {
 			/>
 			<Route
 				path="/profile/:userId"
+				element={
+					<Suspense fallback={<Loader />}>
+						<ProtectedRoute>
+							<Profile />
+						</ProtectedRoute>
+					</Suspense>
+				}
+			/>
+			<Route
+				path="/favorites"
 				element={
 					<Suspense fallback={<Loader />}>
 						<ProtectedRoute>

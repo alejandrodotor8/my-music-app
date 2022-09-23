@@ -1,56 +1,41 @@
-import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { resetUser } from '../store/slices/userSlice';
+import { resetFavoritePlaylist } from '../store/slices/favoritePlaylistSlice';
+import { resetFavorites } from '../store/slices/favoritesTracksSlice';
 import { useAppSelector, useAppDispatch } from '../Hooks/reduxHooks';
-import { addTrack, removeTrack } from '../store/slices/favoritesTracksSlice';
 import { useAuth } from '../Hooks/useAuth';
-import changeFavorite from '../services/change-favorite';
-import MainContent from '../components/templates/Main-content/Main-content';
-import Track from '../components/molecules/Track/Track';
-import type { ITrack } from '../shared/types';
+import Button from '../components/atoms/Button/Button';
 
 export default function Profile() {
-	const { api } = useAuth();
+	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
-
+	const { logout } = useAuth();
 	const user = useAppSelector((state) => state.user.value);
-	const favoritesTracks = useAppSelector(
-		(state) => state.favoritesTracks.value
-	);
 
-	const favPlaylistID = useAppSelector(
-		(state) => state.favoritePlaylist.value.id
-	);
-	const favPlaylist = useAppSelector((state) => state.favoritesTracks.value);
-
-	const handleClickChangeFav = (track: ITrack) => {
-		changeFavorite(
-			favPlaylist,
-			track,
-			favPlaylistID,
-			api,
-			dispatch,
-			addTrack,
-			removeTrack
-		);
+	const handleClickLogout = (): void => {
+		logout();
+		dispatch(resetUser());
+		dispatch(resetFavoritePlaylist());
+		dispatch(resetFavorites());
+		navigate('/signin');
 	};
 
 	return (
-		<MainContent
-			title={'Welcome back ' + user.name}
-			description="This are your favorites global songs"
-		>
-			{favoritesTracks && (
-				<ul className="tracks">
-					{favoritesTracks.map((track, index) => (
-						<Track
-							key={track.id}
-							position={index + 1}
-							track={track}
-							handleClick={() => handleClickChangeFav(track)}
-							isFav={favPlaylist.some((item) => item.id === track.id)}
-						/>
-					))}
-				</ul>
-			)}
-		</MainContent>
+		<div className="profile">
+			<figure className="profile__picture">
+				<img src={user.image} alt="Profile picture" />
+				<div className="spin"></div>
+			</figure>
+			<h3 className="profile__name">{user.name}</h3>
+			<h4 className="profile__id">{'@' + user.id}</h4>
+
+			<Button
+				size="small"
+				element="button"
+				handleClick={handleClickLogout}
+				label="Log out"
+				type="secondary"
+			/>
+		</div>
 	);
 }

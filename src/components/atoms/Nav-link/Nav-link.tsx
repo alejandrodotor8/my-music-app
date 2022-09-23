@@ -1,13 +1,15 @@
+import { ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Nav-link.scss';
 
 interface Props {
 	to: string;
-	label: string;
 	handleClick: () => void;
+	label?: string;
+	children?: ReactNode;
 }
 
-export default function NavLink_({ to, label, handleClick }: Props) {
+export default function NavLink_({ to, label, handleClick, children }: Props) {
 	let activeClass = 'nav-link nav-link--active';
 
 	return (
@@ -16,7 +18,8 @@ export default function NavLink_({ to, label, handleClick }: Props) {
 			className={({ isActive }) => (isActive ? activeClass : 'nav-link')}
 			onClick={handleClick}
 		>
-			<span className="nav-link__label">{label}</span>
+			{children}
+			{label && <span className="nav-link__label">{label}</span>}
 			<div className="nav-link__line"></div>
 		</NavLink>
 	);
