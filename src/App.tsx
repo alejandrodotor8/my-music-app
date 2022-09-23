@@ -8,16 +8,12 @@ import { useAppSelector } from './Hooks/reduxHooks';
 import { useAuth } from './Hooks/useAuth';
 
 function App() {
-	const { isAuthenticated, logout } = useAuth();
+	const { isAuthenticated } = useAuth();
 	const user = useAppSelector((state) => state.user.value);
 
 	return (
 		<BrowserRouter>
-			<Header
-				user={user}
-				isAuthenticated={isAuthenticated}
-				logout={logout}
-			/>
+			<Header user={user} isAuthenticated={isAuthenticated} />
 			<Router />
 			<Footer />
 		</BrowserRouter>
