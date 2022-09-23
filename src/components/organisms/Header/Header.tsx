@@ -1,12 +1,8 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { resetUser } from '../../../store/slices/userSlice';
-import { resetFavoritePlaylist } from '../../../store/slices/favoritePlaylistSlice';
-import { resetFavorites } from '../../../store/slices/favoritesTracksSlice';
-import { useAppDispatch } from '../../../Hooks/reduxHooks';
+import { Link } from 'react-router-dom';
 import Burger from '../../atoms/Burger/Burger';
 import Menu from '../../molecules/Menu/Menu';
-import Button from '../../atoms/Button/Button';
+
 import NavLink from '../../atoms/Nav-link/Nav-link';
 import logo from '/vite.svg';
 import './Header.scss';
@@ -20,21 +16,12 @@ interface Props {
 
 function Header({ user, isAuthenticated, logout }: Props) {
 	const [open, setOpen] = useState(false);
-	const navigate = useNavigate();
-	const dispatch = useAppDispatch();
 
 	const body = document.getElementById('body');
 
 	const handleClickBurger = () => {
 		if (body) body.classList.toggle('no-scroll');
 		setOpen(!open);
-	};
-	const handleClickLogout = (): void => {
-		logout();
-		dispatch(resetUser());
-		dispatch(resetFavoritePlaylist());
-		dispatch(resetFavorites());
-		navigate('/signin');
 	};
 
 	const handleClickNavLink = () => {
@@ -62,7 +49,7 @@ function Header({ user, isAuthenticated, logout }: Props) {
 							handleClick={handleClickNavLink}
 						/>
 						<NavLink
-							to={'/profile/' + user.id}
+							to={'/favorites'}
 							label="Favorites"
 							handleClick={handleClickNavLink}
 						/>
@@ -71,14 +58,11 @@ function Header({ user, isAuthenticated, logout }: Props) {
 							label="Search"
 							handleClick={handleClickNavLink}
 						/>
-						<Button
-							size="small"
-							element="button"
-							handleClick={handleClickLogout}
-							label="Log out"
-							type="secondary"
-						/>
-						<Link to={'/profile/' + user.id} className="menu__profile">
+
+						<NavLink
+							to={'/profile/' + user.id}
+							handleClick={handleClickNavLink}
+						>
 							<figure>
 								<img
 									src={user.image}
@@ -86,7 +70,7 @@ function Header({ user, isAuthenticated, logout }: Props) {
 									className="menu__profile-picture"
 								/>
 							</figure>
-						</Link>
+						</NavLink>
 					</Menu>
 				</>
 			)}
