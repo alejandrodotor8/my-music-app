@@ -9,5 +9,6 @@ const config: Config.InitialOptions = {
 	moduleNameMapper: {
 		'\\.(css|scss|svg)$': '<rootDir>/src/__mocks__/style-mocks.ts',
 	},
+	resetMocks: false,
 };
 export default config;
