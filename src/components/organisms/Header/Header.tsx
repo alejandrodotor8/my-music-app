@@ -11,10 +11,9 @@ import type { IUser } from '@/shared/types';
 interface Props {
 	user: IUser;
 	isAuthenticated: boolean;
-	logout: () => void;
 }
 
-function Header({ user, isAuthenticated, logout }: Props) {
+function Header({ user, isAuthenticated }: Props) {
 	const [open, setOpen] = useState(false);
 
 	const body = document.getElementById('body');
