@@ -40,6 +40,9 @@
 			"@slices/*": [
 				"./src/store/slices/*"
 			],
+			"@styles/*": [
+				"./src/styles/*"
+			],
 		}
 	},
 	"include": [

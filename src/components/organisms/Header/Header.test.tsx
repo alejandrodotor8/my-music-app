@@ -2,10 +2,10 @@ import { BrowserRouter } from 'react-router-dom';
 import '@testing-library/jest-dom';
 import { fireEvent, render } from '@testing-library/react';
 import Header from './Header';
-import { store } from '../../../store/store';
+import { store } from '@/store/store';
 import { Provider } from 'react-redux';
 
-import { IUser } from '../../../shared/types';
+import { IUser } from '@/shared/types';
 
 describe('<Header />', () => {
 	describe('No Auth has right:', () => {

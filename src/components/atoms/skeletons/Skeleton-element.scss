@@ -1,5 +1,5 @@
 //Basic styles
-@import "../../../styles/variables.scss", "../../../styles/mixins.scss";
+@import "@styles/variables.scss", "@styles/mixins.scss";
 .skeleton {
 	background-color: $purple-skeleton;
 	border-radius: 4px;

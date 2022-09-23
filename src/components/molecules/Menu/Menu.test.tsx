@@ -2,7 +2,7 @@ import { BrowserRouter } from 'react-router-dom';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import Menu from './Menu';
-import NavLink from '../../atoms/Nav-link/Nav-link';
+import NavLink from '@atoms/Nav-link/Nav-link';
 
 describe('<Menu /> closed has right:', () => {
 	const mockProps = {

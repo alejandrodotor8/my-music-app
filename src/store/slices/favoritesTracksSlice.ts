@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import type { ITrack } from '../../shared/types';
+import type { ITrack } from '@/shared/types';
 
 interface FavoritesTracksState {
 	value: ITrack[];
