@@ -24,6 +24,23 @@
 			"@types/jest",
 			"node"
 		],
+		"paths": {
+			"@/*": [
+				"./src/*"
+			],
+			"@atoms/*": [
+				"./src/components/atoms/*"
+			],
+			"@molecules/*": [
+				"./src/components/molecules/*"
+			],
+			"@organisms/*": [
+				"./src/components/organisms/*"
+			],
+			"@slices/*": [
+				"./src/store/slices/*"
+			],
+		}
 	},
 	"include": [
 		"src"
