@@ -1,10 +1,10 @@
-import type { IButton } from '@/shared/types';
+import { IButton, EBtnElement, EType } from '@/shared/types';
 import './Button.scss';
 
 function Button({
 	label,
-	element = 'button',
-	type = 'primary',
+	element = EBtnElement.BUTTON,
+	type = EType.PRIMARY,
 	size,
 	to,
 	handleClick,
