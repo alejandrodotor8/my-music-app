@@ -3,10 +3,9 @@ import './Audio-player.scss';
 
 interface Props {
 	audioUrl: string;
-	image: string;
 }
 
-export default function Audio({ image, audioUrl }: Props) {
+export default function Audio({ audioUrl }: Props) {
 	const audio = useRef<HTMLAudioElement>(null);
 	const [isPlaying, setIsPlaying] = useState(false);
 
@@ -17,23 +16,18 @@ export default function Audio({ image, audioUrl }: Props) {
 		setIsPlaying(!isPlaying);
 	};
 	return (
-		<div className="player">
-			<img src={image} alt="album image" />
-			{audioUrl && (
-				<>
-					<audio
-						data-testid="player-audio"
-						ref={audio}
-						src={audioUrl}
-					></audio>
-					<button
-						className={`player__play-icon ${
-							isPlaying ? 'player__play-icon--pause' : ''
-						}`}
-						onClick={() => handleClick(isPlaying)}
-					></button>
-				</>
-			)}
-		</div>
+		<>
+			<audio data-testid="player-audio" ref={audio}>
+				<source
+					data-testid="player-audio-source"
+					src={audioUrl}
+					type="audio/mpeg"
+				/>
+			</audio>
+			<button
+				className={`play-icon ${isPlaying ? 'play-icon--pause' : ''}`}
+				onClick={() => handleClick(isPlaying)}
+			></button>
+		</>
 	);
 }

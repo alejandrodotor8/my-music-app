@@ -5,7 +5,7 @@
 	height: 50px;
 	background-color: $purple-skeleton-light;
 	@include flex();
-	border-radius: 5px;
+	border-radius: $rounded-lg;
 	&__info {
 		width: 200px;
 		padding: 0 15px;

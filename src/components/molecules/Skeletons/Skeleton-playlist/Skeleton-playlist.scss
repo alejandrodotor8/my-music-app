@@ -6,7 +6,7 @@
 	background-color: $purple-skeleton-light;
 	display: grid;
 	place-items: center;
-	border-radius: 10px;
+	border-radius: $rounded-2xl;
 	position: relative;
 	.skeleton--thumbnail-big {
 		margin-bottom: 45px;

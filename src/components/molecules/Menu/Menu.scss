@@ -16,7 +16,7 @@
 	&__profile-picture {
 		width: 38px;
 		height: 38px;
-		border-radius: 50%;
+		border-radius: $rounded-full;
 		border: 2px solid $purple-dark;
 	}
 	@include from($medium) {

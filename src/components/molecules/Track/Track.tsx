@@ -17,7 +17,10 @@ export default function Track({ position, track, handleClick, isFav }: Props) {
 			<div className="tracks__item-position">
 				<span>{position}</span>
 			</div>
-			<AudioPlayer image={track.image} audioUrl={track.audio} />
+			<figure className="tracks__item-album-cover">
+				<img src={track.image} alt="album cover" />
+				{track.audio && <AudioPlayer audioUrl={track.audio} />}
+			</figure>
 			<div className="tracks__item-info">
 				<span className="song">{track.name}</span>
 				<span className="artist">{track.artists.join()}</span>

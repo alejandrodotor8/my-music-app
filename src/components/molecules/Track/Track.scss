@@ -18,6 +18,17 @@
 		width: 16px;
 		text-align: right;
 	}
+	&-album-cover {
+		position: relative;
+		width: 40px;
+		height: 40px;
+		margin-left: 10px;
+		@include flex();
+		img {
+			position: absolute;
+			width: 40px;
+		}
+	}
 	&-info {
 		width: 200px;
 		padding: 0 15px;
