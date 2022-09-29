@@ -4,7 +4,8 @@ import { resetFavoritePlaylist } from '../store/slices/favoritePlaylistSlice';
 import { resetFavorites } from '../store/slices/favoritesTracksSlice';
 import { useAppSelector, useAppDispatch } from '../Hooks/reduxHooks';
 import { useAuth } from '../Hooks/useAuth';
-import Button from '../components/atoms/Button/Button';
+import Button from '@atoms/Button/Button';
+import ProfilePic from '@atoms/Profile-pic/Profile-pic';
 import { EBtnElement, EType, ESize } from '@/shared/types';
 
 export default function Profile() {
@@ -23,10 +24,9 @@ export default function Profile() {
 
 	return (
 		<div className="profile">
-			<figure className="profile__picture">
-				<img src={user.image} alt="Profile picture" />
-				<div className="spin"></div>
-			</figure>
+			<ProfilePic image={user.image} size={ESize.BIG}>
+				<div className="spin-pp"></div>
+			</ProfilePic>
 			<h3 className="profile__name">{user.name}</h3>
 			<h4 className="profile__id">{'@' + user.id}</h4>
 

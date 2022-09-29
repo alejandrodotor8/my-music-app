@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Burger from '@atoms/Burger/Burger';
+import ProfilePic from '@atoms/Profile-pic/Profile-pic';
 import Menu from '@molecules/Menu/Menu';
-
 import NavLink from '@atoms/Nav-link/Nav-link';
 import logo from '/vite.svg';
-import './Header.scss';
 import type { IUser } from '@/shared/types';
+import './Header.scss';
 
 interface Props {
 	user: IUser;
@@ -62,13 +62,10 @@ function Header({ user, isAuthenticated }: Props) {
 							to={'/profile/' + user.id}
 							handleClick={handleClickNavLink}
 						>
-							<figure>
-								<img
-									src={user.image}
-									alt="Profile picture"
-									className="menu__profile-picture"
-								/>
-							</figure>
+							<ProfilePic
+								image={user.image}
+								customClasses="profile-picture--border"
+							/>
 						</NavLink>
 					</Menu>
 				</>
