@@ -1,5 +1,10 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
+import { PlayerProvider } from '@/Hooks/usePlayer';
+import { AuthProvider } from '@/Hooks/useAuth';
+import { store } from '@/store/store';
+import { Provider } from 'react-redux';
+
 import Track from './Track';
 
 describe('<Track /> has right:', () => {
@@ -12,12 +17,18 @@ describe('<Track /> has right:', () => {
 			image: 'url',
 			audio: 'url',
 		},
-		handleClick: jest.fn(),
-		isFav: false,
 	};
 
 	beforeEach(() => {
-		render(<Track {...mockProps} />);
+		render(
+			<Provider store={store}>
+				<AuthProvider>
+					<PlayerProvider>
+						<Track {...mockProps} />
+					</PlayerProvider>
+				</AuthProvider>
+			</Provider>
+		);
 	});
 
 	test('List item', () => {

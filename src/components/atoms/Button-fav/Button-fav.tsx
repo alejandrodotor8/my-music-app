@@ -1,13 +1,44 @@
+import { useState } from 'react';
+import { useAppSelector, useAppDispatch } from '@/Hooks/reduxHooks';
+import { addTrack, removeTrack } from '@slices/favoritesTracksSlice';
+import { useAuth } from '@/Hooks/useAuth';
+import changeFavorite from '@/services/change-favorite';
+import type { ITrack } from '@/shared/types';
 import './Button-fav.scss';
 
 type Props = {
-	isFav: boolean;
-	handleClick?: () => void;
+	track: ITrack;
 };
 
-export default function ButtonFav({ handleClick, isFav }: Props) {
+export default function ButtonFav({ track }: Props) {
+	const [disabled, setDisabled] = useState(false);
+	const { api } = useAuth();
+	const dispatch = useAppDispatch();
+	const favPlaylistID = useAppSelector(
+		(state) => state.favoritePlaylist.value.id
+	);
+	const favPlaylist = useAppSelector((state) => state.favoritesTracks.value);
+
+	const handleClick = (track: ITrack) => {
+		setDisabled(true);
+		changeFavorite(
+			favPlaylist,
+			track,
+			favPlaylistID,
+			api,
+			dispatch,
+			addTrack,
+			removeTrack
+		).then(() => setDisabled(false));
+	};
+	const isFav = favPlaylist.some((item) => item.id === track.id);
+
 	return (
-		<button className="button-fav" onClick={handleClick}>
+		<button
+			className="button-fav"
+			onClick={() => handleClick(track)}
+			disabled={disabled}
+		>
 			<svg xmlns="http://www.w3.org/2000/svg">
 				<path
 					className={isFav ? 'button-fav--isFav' : ''}

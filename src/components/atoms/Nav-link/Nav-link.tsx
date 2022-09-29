@@ -14,6 +14,7 @@ export default function NavLink_({ to, label, handleClick, children }: Props) {
 
 	return (
 		<NavLink
+			end
 			to={to}
 			className={({ isActive }) => (isActive ? activeClass : 'nav-link')}
 			onClick={handleClick}

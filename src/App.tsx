@@ -2,6 +2,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Header from './components/organisms/Header/Header';
 import Footer from './components/organisms/Footer/Footer';
 import Router from './router/Router';
+import Player from '@atoms/Player/Player';
 import './styles/index.scss';
 
 import { useAppSelector } from './Hooks/reduxHooks';
@@ -16,6 +17,7 @@ function App() {
 			<Header user={user} isAuthenticated={isAuthenticated} />
 			<Router />
 			<Footer />
+			<Player />
 		</BrowserRouter>
 	);
 }

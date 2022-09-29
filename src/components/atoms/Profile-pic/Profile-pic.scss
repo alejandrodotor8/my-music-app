@@ -1,0 +1,17 @@
+@import "@styles/variables.scss", "@styles/mixins.scss";
+
+.profile-picture {
+	position: relative;
+	@include flex();
+	img {
+		border-radius: $rounded-full;
+	}
+	&--normal {
+		width: 38px;
+		height: 38px;
+	}
+	&--big {
+		width: 200px;
+		height: 200px;
+	}
+}

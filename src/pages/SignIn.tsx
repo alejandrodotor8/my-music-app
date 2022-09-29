@@ -7,7 +7,7 @@ import { useAppDispatch } from '../Hooks/reduxHooks';
 import { EBtnElement } from '@/shared/types';
 
 import Button from '../components/atoms/Button/Button';
-import img from '../assets/img/signinwelcome.png';
+import img from '../assets/img/loginimg.png';
 
 function SignIn() {
 	const env = import.meta.env;

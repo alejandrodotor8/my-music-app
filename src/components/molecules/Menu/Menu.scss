@@ -13,12 +13,6 @@
 	transform: translateX(100vw);
 	z-index: $z-up;
 
-	&__profile-picture {
-		width: 38px;
-		height: 38px;
-		border-radius: $rounded-full;
-		border: 2px solid $purple-dark;
-	}
 	@include from($medium) {
 		@include flex($direction: row);
 		width: auto;

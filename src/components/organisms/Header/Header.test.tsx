@@ -67,7 +67,7 @@ describe('<Header />', () => {
 		});
 		test('Profile picture element', () => {
 			expect(
-				component.container.querySelector('.menu__profile-picture')
+				component.container.querySelector('.profile-picture')
 			).toBeInTheDocument();
 		});
 	});
